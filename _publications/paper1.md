@@ -2,9 +2,9 @@
 title: "CCE in heterogenous fixed-T panels"
 collection: publications
 category: manuscripts
-permalink: /publication/2009-10-01-paper-title-number-1
+permalink: /publication/paper1
 excerpt: 'The present paper shows that the CCE approach of Pesaran (2006) is more useful than commonly appreciated, in that it enables consistent and asymptotically normal estimation of interactive effects models with heterogeneous slope coefficients when the number of time periods, T, is fixed and only the number of cross-sectional units, N, is large.'
-date: 2022
+date: 2024-02-17
 venue: 'https://doi.org/10.1093/ectj/utac012'
 #slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 paperurl: 'https://doi.org/10.1093/ectj/utae021'
