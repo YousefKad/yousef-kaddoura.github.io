@@ -1,14 +1,14 @@
 ---
-title: "Paper Title Number 3"
+title: "CCE Under Non-Random Heterogeneity"
 collection: publications
 category: manuscripts
-permalink: /publication/2015-10-01-paper-title-number-3
-excerpt: 'This paper is about the number 3. The number 4 is left for future work.'
-date: 2015-10-01
-venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides3.pdf'
-paperurl: 'http://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2015). &quot;Paper Title Number 3.&quot; <i>Journal 1</i>. 1(3).'
+permalink: /publication/2009-10-01-paper-title-number-1
+excerpt: 'In panel data regression models, it is often not reasonable to expect all cross-sectional units to have identical responses to explanatory variables, or that all relevant variables have been properly accounted for. These concerns have recently motivated the use of interactive effects models with heterogeneous slopes. The workhorse of this literature is the common correlated effects approach, which assumes that both effects and slopes are randomly distributed. The current paper argues that the restrictions implied by this assumption are likely unreasonable in many applications, and that there is a need to allow for nonrandom heterogeneity.'
+date: 2024
+venue: 'The Econometrics Journal'
+#slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
+paperurl: 'https://doi.org/10.1093/ectj/utae021'
+citation: 'Kaddoura, Yousef, and Westerlund, Joakim (2024). '
 ---
 
 The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
