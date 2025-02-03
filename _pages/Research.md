@@ -10,9 +10,9 @@ redirect_from:
 
 ## Publications
 
-- "CCE Under Non-Random Heterogeneity," with Joakim Westerlund, 2024. [The Econometrics Journal](#).
-- "Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed," with Joakim Westerlund, 2023. [Journal of Business & Economic Statistics](#), 41, 778-790.
-- "CCE in heterogeneous fixed T-panels," with Joakim Westerlund, 2022. [The Econometrics Journal](#), 25, 719-738.
+- "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [The Econometrics Journal](#).
+- "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [Journal of Business & Economic Statistics](#), 41, 778-790.
+- "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [The Econometrics Journal](#), 25, 719-738.
 
 ## Working Papers
 
@@ -28,6 +28,4 @@ redirect_from:
 - **High-Dimensional Break Detection,** with Rosnel Sessinou and Stephan Smeekes. (early stages)
 - **Multidimensional Clustering.** (early stages)
 
-</body>
-</html>
 
