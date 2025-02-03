@@ -12,5 +12,3 @@ redirect_from:
 🏫 I received my Ph.D. from [Lund University](https://www.lu.se/) in May 2024. Additionally, I hold an M.Sc. in Economics and an M.Sc. in Finance from [Lund University](https://www.lu.se/). 
 
 🧑‍🔬 Research interests: Econometrics, Machine learning, Panel Data,  Large factor models, Regularization techniques, Clustering/Grouping, Structural breaks and Finance.
-
-###Peer Reviewed publications
