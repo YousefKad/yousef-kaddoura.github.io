@@ -10,14 +10,14 @@ redirect_from:
 
 ## Publications
 
-- "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [The Econometrics Journal](#).
-- "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [Journal of Business & Economic Statistics](#), 41, 778-790.
-- "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [The Econometrics Journal](#), 25, 719-738.
+- "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [*The Econometrics Journal*](#).
+- "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [*Journal of Business & Economic Statistics*](#), 41, 778-790.
+- "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [*The Econometrics Journal*](#), 25, 719-738.
 
 ## Working Papers
 
-- "**Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,**" single-authored (JMP). Resubmitted to [Journal of Econometrics](#).
-- "**Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,**" with Joakim Westerlund. Resubmitted to [Journal of Business & Economic Statistics](#).
+- "**Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,**" single-authored (JMP). Resubmitted to *Journal of Econometrics*.
+- "**Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,**" with Joakim Westerlund. Resubmitted to *Journal of Business & Economic Statistics*.
 - "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. Under review.
 - "**Regime Similarity,**" with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
 
