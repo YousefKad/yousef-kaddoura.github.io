@@ -1,20 +1,20 @@
 ---
-title: "Teaching experience 1"
+title: "Derivative Securities"
 collection: teaching
 type: "Undergraduate course"
-permalink: /teaching/2014-spring-teaching-1
-venue: "University 1, Department"
-date: 2014-01-01
-location: "City, Country"
+permalink: /teaching/2024-derivative-securities
+venue: "University of Liverpool, Department of Finance/Economics"
+date: 2024-09-01
+location: "Liverpool, UK"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+In this course, I am the sole lecturer, covering the foundations of derivative securities.
 
-Heading 1
-======
+## Course Content
 
-Heading 2
-======
+- Introduction to derivative markets  
+- Pricing and valuation of options and futures  
+- Hedging strategies using derivatives  
+- Risk management applications  
 
-Heading 3
-======
+This course is part of the **Bachelor in Finance/Economics** program at the University of Liverpool.
