@@ -6,8 +6,8 @@
 
 main:
   - title: "Research"
-    url: /publications/paper3.md
-    url: /publications/paper2.md
+    url: /publications/paper3
+    url: /publications/paper2
     
     
 
