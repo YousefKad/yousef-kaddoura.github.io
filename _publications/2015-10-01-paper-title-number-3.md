@@ -1,5 +1,5 @@
 ---
-title: "[CCE Under Non-Random Heterogeneity]( https://doi.org/10.1093/ectj/utae021) (with Joakim Westerlund)"
+title: "CCE Under Non-Random Heterogeneity (with Joakim Westerlund)"
 collection: publications
 category: manuscripts
 permalink: /publication/paper1
@@ -8,5 +8,5 @@ date: 2024-02-17
 venue: 'The Econometrics Journal'
 #slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 paperurl: 'https://doi.org/10.1093/ectj/utae021'
-citation: 'Kaddoura, Yousef, and Westerlund, Joakim (2024).'
+citation: 'Kaddoura Y, Westerlund J. CCE under nonrandom heterogeneity. The Econometrics Journal. 2024 Nov 28:utae021.'
 ---
