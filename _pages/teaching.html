@@ -21,6 +21,18 @@ author_profile: true
         }
         .card {
             margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .section-title {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #007bff;
         }
     </style>
 </head>
@@ -28,7 +40,7 @@ author_profile: true
     <div class="container">
         <h2 class="text-center mb-4">Teaching Experience</h2>
         
-        <h4>Lecturer</h4>
+        <h4 class="section-title">Lecturer</h4>
         <div class="card">
             <div class="card-body">
                 <h5>2024 - Derivative Securities (Bachelor in Finance/Economics, University of Liverpool)</h5>
@@ -57,29 +69,45 @@ author_profile: true
             </div>
         </div>
 
-        <h4>Teaching Assistant, Lund University</h4>
+        <h4 class="section-title">Teaching Assistant, Lund University</h4>
         
-        <h5>Master of Economics</h5>
-        <ul>
-            <li>2020-2023 - Advanced Econometrics (Master's Level)</li>
-            <li>2020-2023 - Econometric Theory (PhD Level)</li>
-        </ul>
+        <div class="card">
+            <div class="card-body">
+                <h5>Master of Economics</h5>
+                <ul>
+                    <li>2020-2023 - Advanced Econometrics (Master's Level)</li>
+                    <li>2020-2023 - Econometric Theory (PhD Level)</li>
+                </ul>
+            </div>
+        </div>
         
-        <h5>Master of Finance</h5>
-        <ul>
-            <li>2021-2023 - Foundations of Finance (Master's Level)</li>
-        </ul>
+        <div class="card">
+            <div class="card-body">
+                <h5>Master of Finance</h5>
+                <ul>
+                    <li>2021-2023 - Foundations of Finance (Master's Level)</li>
+                </ul>
+            </div>
+        </div>
 
-        <h5>Master's of Data Analytics and Business Economics</h5>
-        <ul>
-            <li>2021-2023 - Machine Learning from a Regression Perspective (Master's Level)</li>
-            <li>2023 - Advanced Machine Learning (Master's Level)</li>
-        </ul>
+        <div class="card">
+            <div class="card-body">
+                <h5>Master's of Data Analytics and Business Economics</h5>
+                <ul>
+                    <li>2021-2023 - Machine Learning from a Regression Perspective (Master's Level)</li>
+                    <li>2023 - Advanced Machine Learning (Master's Level)</li>
+                </ul>
+            </div>
+        </div>
 
-        <h5>Bachelor of Economics</h5>
-        <ul>
-            <li>2020-2022 - Introduction to Econometrics</li>
-        </ul>
+        <div class="card">
+            <div class="card-body">
+                <h5>Bachelor of Economics</h5>
+                <ul>
+                    <li>2020-2022 - Introduction to Econometrics</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
