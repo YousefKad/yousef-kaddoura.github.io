@@ -7,6 +7,6 @@ excerpt: 'In panel data regression models, it is often not reasonable to expect 
 date: 2024-11-28
 venue: 'The Econometrics Journal'
 #slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
-paperurl: 'https://doi.org/10.1093/ectj/utae021'
+paperurl: '[https://doi.org/10.1093/ectj/utae021](https://doi.org/10.1093/ectj/utae021)'
 citation: 'Kaddoura Y, Westerlund J. CCE under nonrandom heterogeneity (2024). The Econometrics Journal. utae021.'
 ---
