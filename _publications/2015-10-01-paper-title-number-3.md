@@ -8,5 +8,5 @@ date: 2024-02-17
 venue: 'The Econometrics Journal'
 #slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 paperurl: 'https://doi.org/10.1093/ectj/utae021'
-citation: 'Kaddoura Y, Westerlund J. CCE under nonrandom heterogeneity. The Econometrics Journal. 2024 Nov 28:utae021.'
+citation: 'Kaddoura Y, Westerlund J. CCE under nonrandom heterogeneity (2024). The Econometrics Journal. utae021.'
 ---
