@@ -6,7 +6,10 @@
 
 main:
   - title: "Research"
-    url: /publications/
+    url: /publications/paper3.md
+    url: /publications/paper2.md
+    
+    
 
   #- title: "Talks"
   #  url: /talks/    
