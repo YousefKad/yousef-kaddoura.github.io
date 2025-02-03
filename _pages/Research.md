@@ -6,67 +6,28 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: #ffffff;
-            color: #000;
-            margin: 40px;
-        }
-        .container {
-            max-width: 800px;
-        }
-        h1, h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #000;
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-        }
-        p, li {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-left: 0;
-            text-indent: 0;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2 class="underline">Publications</h2>
-        <p><a href="#">"CCE Under Non-Random Heterogeneity,"</a> with Joakim Westerlund, 2024. The Econometrics Journal.</p>
-        <p><a href="#">"Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,"</a> with Joakim Westerlund, 2023. Journal of Business & Economic Statistics, 41, 778-790.</p>
-        <p><a href="#">"CCE in heterogeneous fixed T-panels,"</a> with Joakim Westerlund, 2022. The Econometrics Journal, 25, 719-738.</p>
+# Research
 
-        <h2 class="underline">Working Papers</h2>
-        <p>"Estimating Coefficient-by-Coefficient Breaks in Panel Data Models," single-authored (JMP). Resubmitted to Journal of Econometrics.</p>
-        <p>"Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model," with Joakim Westerlund. Resubmitted to Journal of Business & Economic Statistics.</p>
-        <p>"On Robustness to Random Breaks in Panel Data," with Joakim Westerlund. Under review.</p>
-        <p>"Regime Similarity," with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).</p>
+## Publications
 
-        <h2 class="underline">Work in progress</h2>
-        <p>"Estimation of Clusters in Panel Factor Models when T is fixed," with Ali Meherabani and Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).</p>
-        <p>"High-Dimensional Testing in Panel Data Models," with Rosnel Sessinou. (early stages)</p>
-        <p>"High-Dimensional Break Detection," with Rosnel Sessinou and Stephan Smeekes. (early stages)</p>
-        <p>"Multidimensional Clustering." (early stages)</p>
-    </div>
+- "CCE Under Non-Random Heterogeneity," with Joakim Westerlund, 2024. [The Econometrics Journal](#).
+- "Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed," with Joakim Westerlund, 2023. [Journal of Business & Economic Statistics](#), 41, 778-790.
+- "CCE in heterogeneous fixed T-panels," with Joakim Westerlund, 2022. [The Econometrics Journal](#), 25, 719-738.
+
+## Working Papers
+
+- **Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,** single-authored (JMP). Resubmitted to [Journal of Econometrics](#).
+- **Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,** with Joakim Westerlund. Resubmitted to [Journal of Business & Economic Statistics](#).
+- **On Robustness to Random Breaks in Panel Data,** with Joakim Westerlund. Under review.
+- **Regime Similarity,** with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
+
+## Work in Progress
+
+- **Estimation of Clusters in Panel Factor Models when T is fixed,** with Ali Meherabani and Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
+- **High-Dimensional Testing in Panel Data Models,** with Rosnel Sessinou. (early stages)
+- **High-Dimensional Break Detection,** with Rosnel Sessinou and Stephan Smeekes. (early stages)
+- **Multidimensional Clustering.** (early stages)
+
 </body>
 </html>
 
