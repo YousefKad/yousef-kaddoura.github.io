@@ -6,7 +6,6 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
 # Research
 
