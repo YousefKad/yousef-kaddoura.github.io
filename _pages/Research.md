@@ -10,9 +10,9 @@ redirect_from:
 
 ## Publications
 
-- "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [*The Econometrics Journal*](#).
-- "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [*Journal of Business & Economic Statistics*](#), 41, 778-790.
-- "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [*The Econometrics Journal*](#), 25, 719-738.
+- "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [*The Econometrics Journal*](https://doi.org/10.1093/ectj/utae021).
+- "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [*Journal of Business & Economic Statistics*](https://doi.org/10.1080/07350015.2022.2067546), 41, 778-790.
+- "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [*The Econometrics Journal*](https://doi.org/10.1093/ectj/utac012), 25, 719-738.
 
 ## Working Papers
 
