@@ -30,6 +30,9 @@ author_profile: true
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.08);
             background-color: #ffffff;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            opacity: 0; /* For animation */
+            transform: translateY(20px); /* For animation */
+            animation: fadeIn 0.5s ease-in-out forwards; /* For animation */
         }
         .card:hover {
             transform: scale(1.03);
@@ -46,6 +49,13 @@ author_profile: true
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
