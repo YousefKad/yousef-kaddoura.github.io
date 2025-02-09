@@ -18,7 +18,7 @@ redirect_from:
 ## Working Papers
 
 - "**Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,**" single-authored (JMP). Resubmitted to *Journal of Econometrics*.
-- "**Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,**" with Joakim Westerlund. Resubmitted to *Journal of Business & Economic Statistics*.
+- "**Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,**" with Joakim Westerlund.
 - "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. Under review.
 - "**Regime Similarity,**" with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
 
