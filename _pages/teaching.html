@@ -14,32 +14,59 @@ author_profile: true
   a {
     text-decoration: none;
     color: darkblue;
+    font-weight: bold;
     position: relative;
-    transition: all 0.3s ease;
+    transition: transform 0.4s ease, text-shadow 0.4s ease;
   }
-
-  /* Create an animated gradient underline */
+  
+  /* Pulsating glow effect */
+  a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(0,32,96,0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+  }
+  
+  /* Animated gradient underline */
   a::after {
     content: "";
     position: absolute;
-    bottom: -4px;
+    bottom: -5px;
     left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background: linear-gradient(to right, #002060, darkblue);
-    transition: width 0.3s ease, left 0.3s ease;
+    background: linear-gradient(90deg, #002060, darkblue);
+    background-size: 200% 200%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
   }
-
-  /* On hover: scale up, add a subtle shadow, and animate the underline */
+  
   a:hover {
-    color: #002060;
-    transform: scale(1.1);
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1) rotate(-1deg);
+    text-shadow: 0 0 10px rgba(0, 32, 96, 0.7);
   }
-
+  
+  a:hover::before {
+    width: 150%;
+    height: 150%;
+  }
+  
   a:hover::after {
     width: 100%;
-    left: 0;
+    animation: underlineAnimation 1s linear infinite;
+  }
+  
+  @keyframes underlineAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
   }
 </style>
     <style>
