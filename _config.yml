@@ -7,6 +7,8 @@
 # server process.
 
 # Basic Site Settings
+header:
+  show_logo: true
 locale                   : "en-US"
 title                    : "Yousef's Homepage"
 title_separator          : "-"
