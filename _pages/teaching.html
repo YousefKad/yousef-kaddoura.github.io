@@ -15,29 +15,31 @@ author_profile: true
     text-decoration: none;
     color: darkblue;
     position: relative;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
   }
-  
-  /* Underline effect */
+
+  /* Create an animated gradient underline */
   a::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -2px;
+    bottom: -4px;
+    left: 50%;
     width: 0;
-    height: 2px;
-    background-color: darkblue;
-    transition: width 0.3s ease;
+    height: 3px;
+    background: linear-gradient(to right, #002060, darkblue);
+    transition: width 0.3s ease, left 0.3s ease;
   }
-  
-  /* Hover effects */
+
+  /* On hover: scale up, add a subtle shadow, and animate the underline */
   a:hover {
-    color: #002060; /* A slightly deeper blue */
-    transform: scale(1.05);
+    color: #002060;
+    transform: scale(1.1);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
   }
-  
+
   a:hover::after {
     width: 100%;
+    left: 0;
   }
 </style>
     <style>
