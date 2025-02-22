@@ -14,61 +14,34 @@ author_profile: true
   a {
     text-decoration: none;
     color: darkblue;
-    font-weight: bold;
     position: relative;
-    transition: transform 0.4s ease, text-shadow 0.4s ease;
+    transition: transform 0.3s ease;
   }
-  
-  /* Pulsating glow effect */
-  a::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, rgba(0,32,96,0.4) 0%, transparent 70%);
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    transition: width 0.4s ease, height 0.4s ease;
-    z-index: -1;
-  }
-  
-  /* Animated gradient underline */
+
   a::after {
     content: "";
     position: absolute;
-    bottom: -5px;
     left: 50%;
+    bottom: -3px;
     transform: translateX(-50%);
     width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #002060, darkblue);
-    background-size: 200% 200%;
-    border-radius: 2px;
-    transition: width 0.4s ease;
+    height: 2px;
+    background-color: darkblue;
+    transition: width 0.3s ease;
   }
-  
+
   a:hover {
-    transform: scale(1.1) rotate(-1deg);
-    text-shadow: 0 0 10px rgba(0, 32, 96, 0.7);
+    transform: translateY(-3px);
   }
-  
-  a:hover::before {
-    width: 150%;
-    height: 150%;
-  }
-  
+
   a:hover::after {
     width: 100%;
-    animation: underlineAnimation 1s linear infinite;
-  }
-  
-  @keyframes underlineAnimation {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
   }
 </style>
+<a href="https://www.ehl.lu.se/tilman-bretschneider" target="_blank">
+  Tilman Bretschneider
+</a>
+
     <style>
         body {
             background-color: #f4f4f4;
