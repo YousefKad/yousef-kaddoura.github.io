@@ -25,6 +25,7 @@ redirect_from:
 ## Work in Progress
 
 - "**Estimation of Clusters in Panel Factor Models when T is fixed,**" with Ali Meherabani and Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
+- "**Imputation in panel data models,**" with Tilman Bretschneider and Joakim Westerlund. 
 - "**High-Dimensional Testing in Panel Data Models,**" with Rosnel Sessinou. (early stages)
 - "**High-Dimensional Break Detection,**" with Rosnel Sessinou and Stephan Smeekes. (early stages)
 - "**Multidimensional Clustering.**" (early stages)
