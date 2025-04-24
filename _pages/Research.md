@@ -18,7 +18,7 @@ redirect_from:
 
 ## Working Papers
 
-- "**Estimation of Multivariate Heterogeneity In Panel Data Models: An Application to The Fama French Three Factor Model,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
+- "**Estimating Multi-Dimensional Group Structures In Panel Data Models With An Application To Asset Pricing,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
 - "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *Under review*.
 - "**Regime Similarity,**" with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
 
