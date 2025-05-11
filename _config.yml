@@ -22,7 +22,7 @@ logo: "/assets/fonts/academicicons.svg"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "me_3.JPG"
+  avatar           : "me_3.jpg"
   name             : "Yousef Kaddoura" 
   bio              : "Assistant Professor of Economics"
   location         : "UK-Liverpool"
