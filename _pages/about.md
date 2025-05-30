@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am joining [Örebro Universitet](https://www.oru.se/) as an assistant professor. Prior to this appoitment, I held a temporary Assistant Professor position at the [University of Liverpool Management School](https://www.liverpool.ac.uk/management/). I am also affiliated with [Lund University School of Economics and Management](https://www.lusem.lu.se/).
+I am joining [Örebro Universitet](https://www.oru.se/) as an Assistant Professor. Prior to this appoitment, I held a temporary Assistant Professor position at the [University of Liverpool Management School](https://www.liverpool.ac.uk/management/). I am also affiliated with [Lund University School of Economics and Management](https://www.lusem.lu.se/).
 
 I earned my Ph.D. from [Lund University](https://www.lu.se/) in 2024. Additionally, I hold an M.Sc. in Economics and an M.Sc. in Finance from [Lund University](https://www.lu.se/). 
 
