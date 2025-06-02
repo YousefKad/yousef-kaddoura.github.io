@@ -17,7 +17,7 @@ redirect_from:
 - "**CCE in heterogeneous fixed T-panels,**" with Joakim Westerlund, 2022. [*The Econometrics Journal*](https://doi.org/10.1093/ectj/utac012), 25, 719-738.
 
 ## Working Papers
-
+- "**Time Averaged Cce,**" with Joakim Westerlund. [*Under Review*]([https://doi.org/10.1093/ectj/utae021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5274776))
 - "**Estimating Multi-Dimensional Group Structures In Panel Data Models With An Application To Asset Pricing,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
 - "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *Under review*.
 - "**Regime Similarity,**" with Joakim Westerlund. Working paper available soon (proofs and simulations done → rough draft).
