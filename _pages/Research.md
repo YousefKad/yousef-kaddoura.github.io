@@ -19,8 +19,8 @@ redirect_from:
 ## Working Papers
 - "**Time Averaged Cce,**" with Yiannis Karavias and Joakim Westerlund. [*Under review*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5274776).
 - "**Estimating Multi-Dimensional Group Structures In Panel Data Models With An Application To Asset Pricing,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
-- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *Under review*.
-- "**Generally Shifting Coefficients in Interactive Effects Panel Data Models And The COVID–19 Regime,**" with Joakim Westerlund.*Under review*.
+- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *R&R*.
+- "**Generally Shifting Coefficients in Interactive Effects Panel Data Models And The COVID–19 Regime,**" with Joakim Westerlund. *Under review*.
 
 ## Work in Progress
 
