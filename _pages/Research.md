@@ -10,7 +10,7 @@ redirect_from:
 # Research
 
 ## Publications
-
+- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *Forthcoming- Oxford Bulletin of Economics and Statistics*.
 - "**Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,**" single-authored (JMP), 2025. [*Journal of Econometrics*](https://doi.org/10.1016/j.jeconom.2025.106005).
 - "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [*The Econometrics Journal*](https://doi.org/10.1093/ectj/utae021).
 - "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [*Journal of Business & Economic Statistics*](https://doi.org/10.1080/07350015.2022.2067546), 41, 778-790.
@@ -19,7 +19,6 @@ redirect_from:
 ## Working Papers
 - "**Time Averaged Cce,**" with Yiannis Karavias and Joakim Westerlund. [*Under review*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5274776).
 - "**Estimating Multi-Dimensional Group Structures In Panel Data Models With An Application To Asset Pricing,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
-- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *R&R*.
 - "**Generally Shifting Coefficients in Interactive Effects Panel Data Models And The COVID–19 Regime,**" with Joakim Westerlund. *Under review*.
 
 ## Work in Progress
