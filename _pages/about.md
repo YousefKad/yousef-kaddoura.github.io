@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am an  Assistant Professor at [Örebro Universitet](https://www.oru.se/). I am also an Economist at The National Institute of Economic Research ([NIER](https://www.konj.se/en/about-us/)). Previously, I held an Assistant Professor position at the [University of Liverpool Management School](https://www.liverpool.ac.uk/management/). I am also an affiliated researcher at [Lund University School of Economics and Management](https://www.lusem.lu.se/). 
+I am an  Assistant Professor at [Örebro Universitet](https://www.oru.se/). Previously, I held an Assistant Professor position at the [University of Liverpool Management School](https://www.liverpool.ac.uk/management/). I am also an affiliated researcher at [Lund University School of Economics and Management](https://www.lusem.lu.se/). 
 
 I earned my Ph.D. in Economics from [Lund Universitet](https://www.lu.se/) in 2024. Additionally, I hold an M.Sc. in Economics and another M.Sc. in Finance from [Lund Universitet](https://www.lu.se/). 
 
