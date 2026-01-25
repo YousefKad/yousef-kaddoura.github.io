@@ -10,7 +10,7 @@ redirect_from:
 # Research
 
 ## Publications
-- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund. *Forthcoming*. [*Oxford Bulletin of Economics and Statistics*](https://onlinelibrary.wiley.com/doi/10.1111/obes.70032).
+- "**On Robustness to Random Breaks in Panel Data,**" with Joakim Westerlund, 2026. [*Oxford Bulletin of Economics and Statistics*](https://onlinelibrary.wiley.com/doi/10.1111/obes.70032).
 - "**Estimating Coefficient-by-Coefficient Breaks in Panel Data Models,**" single-authored (JMP), 2025. [*Journal of Econometrics*](https://doi.org/10.1016/j.jeconom.2025.106005).
 - "**CCE Under Non-Random Heterogeneity,**" with Joakim Westerlund, 2024. [*The Econometrics Journal*](https://doi.org/10.1093/ectj/utae021).
 - "**Estimation of Panel Data Models with Random Interactive Effects and Multiple Structural Breaks when T is fixed,**" with Joakim Westerlund, 2023. [*Journal of Business & Economic Statistics*](https://doi.org/10.1080/07350015.2022.2067546), 41, 778-790.
