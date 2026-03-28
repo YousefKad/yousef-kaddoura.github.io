@@ -28,5 +28,7 @@ redirect_from:
 - "**High-Dimensional Testing in Panel Data Models,**" with Rosnel Sessinou. (early stages)
 - "**High-Dimensional Break Detection,**" with Rosnel Sessinou and Stephan Smeekes. (early stages)
 - "**Multidimensional Clustering.**" (early stages)
+- "**Local Projections in Panel Data Models.**" with Joakim Westerlund. (early stages)
+- "**Time Varying Parameters in Panel Data Models.**" (early stages)
 
 
