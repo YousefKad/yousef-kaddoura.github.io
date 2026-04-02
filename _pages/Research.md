@@ -19,7 +19,7 @@ redirect_from:
 ## Working Papers
 - "**Time Averaged Cce,**" with Yiannis Karavias and Joakim Westerlund. [*R&R*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5274776) *Oxford Bulletin of Economics and Statistics*.
 - "**Estimating Multi-Dimensional Group Structures In Panel Data Models With An Application To Asset Pricing,**" with Joakim Westerlund. [*Under&nbsp;review*]({{ 'yousef-kaddoura.github.io/files/multidim_main_21feb2025.pdf' | relative_url }}).
-- "**Generally Shifting Coefficients in Interactive Effects Panel Data Models And The COVID–19 Regime,**" with Joakim Westerlund. *RR in journal of business and economic statistics*.
+- "**Generally Shifting Coefficients in Interactive Effects Panel Data Models And The COVID–19 Regime,**" with Joakim Westerlund. *R&R in Journal of Business and Economic Statistics*.
 - "**Imputation in panel data models,**" with Tilman Bretschneider. 
 
 ## Work in Progress
