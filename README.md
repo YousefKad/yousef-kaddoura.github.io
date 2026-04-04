@@ -11,7 +11,7 @@ Your site will be live at `https://YOUR-USERNAME.github.io`.
 
 ## Attribution
 
-If you use or adapt this template, please credit Yousef Kaddoura by retaining a visible acknowledgment in the footer, README, or source code.
+If you use or adapt this template, please credit Yousef Kaddoura by retaining a visible acknowledgment in the footer.
 
 ## File structure
 ```
