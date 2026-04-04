@@ -218,6 +218,7 @@ img { display: block; max-width: 100%; }
   background: var(--bg);
   padding: 2.8rem 3.4rem 5rem;
   max-width: 840px;
+  margin: 0 auto;          /* ← add this */
   transition: background .25s ease;
 }
 
