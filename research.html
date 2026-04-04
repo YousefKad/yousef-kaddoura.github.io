@@ -88,7 +88,6 @@
     .res-title { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.4; }
     .res-meta-authors { font-size: .82rem; color: var(--muted); }
 
-    /* Journal label shown always */
     .res-meta-journal {
       display: inline-flex;
       align-items: center;
@@ -120,7 +119,7 @@
     .badge-rev    { background: var(--violet-soft); color: var(--violet); }
     .badge-wip    { background: var(--amber-soft);  color: var(--amber); }
 
-    /* ── Hover preview — CLICKABLE ── */
+    /* ── Hover preview ── */
     .res-preview {
       position: absolute;
       left: 0;
@@ -136,22 +135,14 @@
       transform: translateY(6px);
       transition: opacity .17s ease, transform .17s ease, visibility .17s ease;
       z-index: 40;
-      /* pointer-events intentionally NOT none — links must be clickable */
     }
-
-    /* Transparent bridge fills the gap so hover doesn't drop when
-       the cursor moves from the row into the preview card */
     .res-preview::before {
       content: '';
       position: absolute;
       top: -10px; left: 0; right: 0;
       height: 10px;
     }
-
-    .res-preview-inner {
-      padding: 14px 15px;
-    }
-
+    .res-preview-inner { padding: 14px 15px; }
     .res-row:hover .res-preview {
       opacity: 1;
       visibility: visible;
@@ -168,25 +159,20 @@
       color: var(--text); line-height: 1.4; margin-bottom: 10px;
     }
     .res-preview-divider { height: 1px; background: var(--line); margin: 10px 0; }
-
     .res-preview-row { display: flex; align-items: flex-start; gap: 8px; margin-top: 6px; }
-
     .res-preview-icon {
       flex-shrink: 0;
       width: 28px; height: 28px; border-radius: 8px;
       background: var(--blue-soft);
       display: flex; align-items: center; justify-content: center;
     }
-
     .res-preview-detail { display: flex; flex-direction: column; gap: 1px; }
     .res-preview-key {
       font-size: .69rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
     }
     .res-preview-val { font-size: .82rem; color: #334155; line-height: 1.4; }
-    .res-preview-val a {
-      color: var(--blue); text-decoration: none; font-weight: 600;
-    }
+    .res-preview-val a { color: var(--blue); text-decoration: none; font-weight: 600; }
     .res-preview-val a:hover { text-decoration: underline; }
 
     @media (max-width: 820px) {
@@ -212,9 +198,9 @@
   <div class="sidebar-role">Assistant Professor</div>
   <div class="sidebar-affil">Örebro Universitet<br/>NIER · Economic Analyst<br/>Affiliated, Lund University</div>
   <div class="sidebar-links">
-    <a class="sidebar-link" href="/cdn-cgi/l/email-protection#720b1d070117145c191316161d070013321c17195c1e075c0117">
+    <a class="sidebar-link" href="mailto:yousef.kaddoura@nek.lu.se">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      <span class="__cf_email__" data-cfemail="374e5842445251195c565353584245567759525c195b42194452">[email&#160;protected]</span>
+      yousef.kaddoura@nek.lu.se
     </a>
     <a class="sidebar-link" href="https://scholar.google.com/citations?user=oif7el4AAAAJ&hl=en" target="_blank" rel="noopener">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -241,6 +227,11 @@
       Code
     </a>
     <a href="files/Yousef_Resume_updated.pdf" target="_blank" class="btn-cv">CV ↓</a>
+    <button id="dm-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <svg id="dm-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
   </nav>
 
   <div class="page-head fi"><h1>Research</h1></div>
@@ -708,4 +699,12 @@
         </div>
 
       </div>
-    </
+    </section>
+
+  </div><!-- end research-shell -->
+</main>
+</div>
+<footer>© 2026 Yousef Kaddoura · Örebro Universitet</footer>
+<script src="site.js"></script>
+</body>
+</html>
