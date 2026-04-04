@@ -43,7 +43,6 @@
     .research-section-head h2 { margin: 0; font-size: 1.08rem; font-weight: 800; color: var(--text); }
     .research-section-head p  { margin: 0; font-size: .92rem; color: var(--muted); }
 
-    /* ── Card ── */
     .res-card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -52,7 +51,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* ── Row ── */
     .res-row {
       position: relative;
       display: flex;
@@ -68,7 +66,6 @@
     .res-row:first-child { border-top: 0; }
     .res-row:hover { background: #f8faff; z-index: 10; }
 
-    /* accent bar */
     .res-row::before {
       content: '';
       position: absolute;
@@ -82,7 +79,6 @@
     }
     .res-row:hover::before { transform: translateY(-50%) scaleY(1); opacity: 1; }
 
-    /* ── Row left ── */
     .res-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
 
     .res-title { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.4; }
@@ -107,7 +103,6 @@
 
     .res-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
-    /* ── Badges ── */
     .badge {
       display: inline-flex; align-items: center;
       padding: 4px 9px; border-radius: 999px;
@@ -119,7 +114,6 @@
     .badge-rev    { background: var(--violet-soft); color: var(--violet); }
     .badge-wip    { background: var(--amber-soft);  color: var(--amber); }
 
-    /* ── Hover preview ── */
     .res-preview {
       position: absolute;
       left: 0;
@@ -218,6 +212,8 @@
 </aside>
 
 <main class="main">
+  <div class="content-inner">
+
   <nav class="top-nav fi">
     <a href="index.html">About</a>
     <a href="research.html" class="active">Research</a>
@@ -697,6 +693,8 @@
     </section>
 
   </div><!-- end research-shell -->
+
+  </div><!-- end content-inner -->
 </main>
 </div>
 <footer>© 2026 Yousef Kaddoura · Örebro Universitet</footer>
