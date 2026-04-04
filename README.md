@@ -7,11 +7,12 @@
 3. Add your CV at `files/Yousef_Resume_updated.pdf`
 4. Open `teaching.html` and replace every `Course Name Here` with your actual course titles.
 
+Your site will be live at `https://YOUR-USERNAME.github.io`. 
+
 ## Attribution
 
 If you use or adapt this template, please credit Yousef Kaddoura by retaining a visible acknowledgment in the footer, README, or source code.
 
-Your site will be live at `https://YOUR-USERNAME.github.io`. 
 ## File structure
 ```
 ├── index.html       ← Home
