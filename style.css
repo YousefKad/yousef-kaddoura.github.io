@@ -485,6 +485,8 @@ img { display: block; max-width: 100%; }
 .tool-name { font-weight: 600; font-size: .95rem; color: var(--text); margin-bottom: .15rem; }
 .tool-desc { font-size: .78rem; color: var(--muted); line-height: 1.5; }
 
+
+
 /* ═══════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════ */
@@ -530,4 +532,9 @@ footer {
   .main { padding: 1.8rem 1.4rem 3rem; max-width: 100%; }
   .page-head h1 { font-size: 2rem; }
   #dm-toggle { margin-left: 0; }
+}
+
+
+.content-inner {
+  max-width: 760px;
 }
