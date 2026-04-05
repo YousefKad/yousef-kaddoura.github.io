@@ -48,7 +48,9 @@
    RESET
 ═══════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: auto;
+}
 
 body {
   font-family: var(--sans);
@@ -488,17 +490,7 @@ img { display: block; max-width: 100%; }
 
 
 
-/* ═══════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════ */
-footer {
-  padding: 1.2rem 3.4rem;
-  font-size: .78rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  background: var(--bg);
-  transition: background .25s ease, border-color .25s ease;
-}
+
 
 /* ═══════════════════════════════════════════════
    ENTER ANIMATIONS
