@@ -540,7 +540,7 @@ footer {
 }
 
 body {
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 }
 
 footer {
@@ -551,6 +551,7 @@ footer {
   background: #ffffff;
   border-top: 1px solid #ccc;
   text-align: center;
-  padding: 20px 0;
+  padding: 6px 0;
+  font-size: 13px;
   z-index: 1000;
 }
