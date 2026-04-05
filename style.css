@@ -57,6 +57,7 @@ body {
   font-size: 17px;
   line-height: 1.85;
   min-height: 100vh;
+  padding-bottom: 48px;
   transition: background .25s ease, color .25s ease;
   -webkit-font-smoothing: antialiased;
 }
