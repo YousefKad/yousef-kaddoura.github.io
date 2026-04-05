@@ -538,3 +538,19 @@ footer {
 .content-inner {
   max-width: 2000px;
 }
+
+body {
+  padding-bottom: 70px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  padding: 20px 0;
+  z-index: 1000;
+}
