@@ -19,7 +19,6 @@
     btn.setAttribute('title',       'Toggle dark mode');
     btn.innerHTML = currentIcon();
     btn.addEventListener('click', toggleTheme);
-    /* ── Place it AFTER the CV button ── */
     const cv = nav.querySelector('.btn-cv');
     if (cv) cv.after(btn);
     else    nav.appendChild(btn);
@@ -60,74 +59,203 @@
   }
 
   /* ══════════════════════════════════════════
-     2. MOBILE TOUCH — RESEARCH PAGE
+     2. SINGLE-PAGE NAVIGATION
+  ══════════════════════════════════════════ */
+  const pageCache = {};   /* cache fetched pages so repeat visits are instant */
+  let   navigating = false;
+
+  /* Inject transition styles once */
+  const transStyle = document.createElement('style');
+  transStyle.textContent = `
+    .main { transition: opacity .18s ease; }
+    .main.fading { opacity: 0; }
+  `;
+  document.head.appendChild(transStyle);
+
+  function isSameSite (url) {
+    /* Only intercept internal .html links — not external, not PDF */
+    try {
+      const u = new URL(url, location.href);
+      return u.hostname === location.hostname &&
+             !u.pathname.endsWith('.pdf') &&
+             !u.search;
+    } catch { return false; }
+  }
+
+  async function navigateTo (url, pushState) {
+    if (navigating) return;
+    navigating = true;
+
+    const main = document.querySelector('.main');
+
+    /* 1. Fade out */
+    main.classList.add('fading');
+    await sleep(180);
+
+    /* 2. Fetch (or use cache) */
+    let doc;
+    try {
+      if (pageCache[url]) {
+        doc = pageCache[url];
+      } else {
+        const res  = await fetch(url);
+        const text = await res.text();
+        const parser = new DOMParser();
+        doc = parser.parseFromString(text, 'text/html');
+        pageCache[url] = doc;
+      }
+    } catch (e) {
+      /* Fetch failed — fall back to normal navigation */
+      location.href = url;
+      return;
+    }
+
+    /* 3. Swap content-inner */
+    const newContent = doc.querySelector('.content-inner');
+    const oldContent = document.querySelector('.content-inner');
+    if (newContent && oldContent) {
+      oldContent.innerHTML = newContent.innerHTML;
+    }
+
+    /* 4. Inject any page-specific <style> blocks from the fetched page
+          (research.html / teaching.html have their own styles) */
+    injectPageStyles(doc);
+
+    /* 5. Update <title> */
+    document.title = doc.title;
+
+    /* 6. Update nav active state */
+    updateActiveNav(url);
+
+    /* 7. Push browser history */
+    if (pushState) history.pushState({ url }, '', url);
+
+    /* 8. Scroll to top */
+    document.querySelector('.main').scrollTo(0, 0);
+    window.scrollTo(0, 0);
+
+    /* 9. Re-run touch/interactive inits for the new page content */
+    initResearchTouch();
+    initTeachingTouch();
+    initIndexTouch();
+    injectToggle();   /* re-inject toggle since content-inner was replaced */
+
+    /* 10. Fade back in */
+    main.classList.remove('fading');
+    navigating = false;
+  }
+
+  function injectPageStyles (doc) {
+    /* Remove previously injected page styles */
+    document.querySelectorAll('style[data-spa-page]').forEach(s => s.remove());
+    /* Inject new ones from fetched doc (skip the first <style> which is always
+       the font-smoothing block present on every page) */
+    const styles = doc.querySelectorAll('head style');
+    styles.forEach((s, i) => {
+      if (i === 0) return; /* skip universal font-smoothing style */
+      const el = document.createElement('style');
+      el.setAttribute('data-spa-page', '1');
+      el.textContent = s.textContent;
+      document.head.appendChild(el);
+    });
+  }
+
+  function updateActiveNav (url) {
+    document.querySelectorAll('.top-nav a').forEach(a => {
+      a.classList.remove('active');
+      try {
+        const aPath = new URL(a.href, location.href).pathname;
+        const uPath = new URL(url,   location.href).pathname;
+        if (aPath === uPath) a.classList.add('active');
+      } catch {}
+    });
+  }
+
+  function interceptNavClicks () {
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      /* Only intercept top-nav links */
+      if (!a.closest('.top-nav')) return;
+      if (!isSameSite(a.href))    return;
+      e.preventDefault();
+      if (a.href === location.href) return; /* already on this page */
+      navigateTo(a.href, true);
+    });
+  }
+
+  /* Handle browser back/forward */
+  window.addEventListener('popstate', e => {
+    if (e.state && e.state.url) navigateTo(e.state.url, false);
+  });
+
+  /* Seed history state for the current page so popstate works on first back */
+  history.replaceState({ url: location.href }, '', location.href);
+
+  function sleep (ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  /* ══════════════════════════════════════════
+     3. MOBILE TOUCH — RESEARCH PAGE
   ══════════════════════════════════════════ */
   function initResearchTouch () {
     const rows = document.querySelectorAll('.res-row');
     if (!rows.length) return;
 
-    const s = document.createElement('style');
-    s.textContent = `
-      @media (max-width: 820px) {
-        /* Row becomes a column when open so preview goes BELOW */
-        .res-row {
-          cursor: pointer;
-          -webkit-tap-highlight-color: transparent;
-          flex-wrap: wrap;
+    /* Only inject style once */
+    if (!document.getElementById('res-touch-style')) {
+      const s = document.createElement('style');
+      s.id = 'res-touch-style';
+      s.textContent = `
+        @media (max-width: 820px) {
+          .res-row {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            flex-wrap: wrap;
+          }
+          .res-row .res-left  { width: 100%; }
+          .res-row .res-right { flex-shrink: 0; }
+          .res-preview { display: none !important; }
+          .res-row.open { background: #f8faff; border-radius: 10px; }
+          [data-theme="dark"] .res-row.open { background: #1a2140; }
+          .res-row.open .res-preview {
+            display: block !important;
+            position: static !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            width: 100% !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            margin-top: 10px;
+            border: 1px solid rgba(15,23,42,.1);
+            background: #ffffff;
+            flex-basis: 100%;
+          }
+          [data-theme="dark"] .res-row.open .res-preview {
+            background: #16191f;
+            border-color: rgba(255,255,255,.08);
+          }
+          .res-tap-hint {
+            display: block;
+            font-size: .68rem;
+            color: #94a3b8;
+            margin-top: 2px;
+          }
+          .res-row.open .res-tap-hint { display: none; }
         }
-        .res-row .res-left  { width: 100%; }
-        .res-row .res-right { flex-shrink: 0; }
-
-        /* Hide preview by default */
-        .res-preview {
-          display: none !important;
-        }
-
-        /* When open: show preview as a full-width block below */
-        .res-row.open {
-          background: #f8faff;
-          border-radius: 10px;
-        }
-        [data-theme="dark"] .res-row.open {
-          background: #1a2140;
-        }
-        .res-row.open .res-preview {
-          display: block !important;
-          position: static !important;
-          opacity: 1 !important;
-          visibility: visible !important;
-          transform: none !important;
-          width: 100% !important;
-          box-shadow: none !important;
-          backdrop-filter: none !important;
-          border-radius: 10px;
-          margin-top: 10px;
-          border: 1px solid rgba(15,23,42,.1);
-          background: #ffffff;
-          flex-basis: 100%;
-        }
-        [data-theme="dark"] .res-row.open .res-preview {
-          background: #16191f;
-          border-color: rgba(255,255,255,.08);
-        }
-
-        /* Tap hint */
-        .res-tap-hint {
-          display: block;
-          font-size: .68rem;
-          color: #94a3b8;
-          margin-top: 2px;
-        }
-        .res-row.open .res-tap-hint { display: none; }
-      }
-    `;
-    document.head.appendChild(s);
+      `;
+      document.head.appendChild(s);
+    }
 
     document.querySelectorAll('.research-section-head p').forEach(p => {
       p.textContent = 'Tap for details & links';
     });
 
     rows.forEach(row => {
+      if (row.dataset.touchReady) return;
+      row.dataset.touchReady = '1';
+
       const hint = document.createElement('span');
       hint.className = 'res-tap-hint';
       hint.textContent = 'Tap for details';
@@ -136,7 +264,6 @@
 
       row.addEventListener('click', function (e) {
         if (window.innerWidth > 820) return;
-        /* Let clicks on links inside an open preview navigate */
         if (e.target.closest('a') && row.classList.contains('open')) return;
         e.preventDefault();
         const isOpen = row.classList.contains('open');
@@ -147,53 +274,52 @@
   }
 
   /* ══════════════════════════════════════════
-     3. MOBILE TOUCH — TEACHING PAGE
+     4. MOBILE TOUCH — TEACHING PAGE
   ══════════════════════════════════════════ */
   function initTeachingTouch () {
     const wraps = document.querySelectorAll('.teach-title-wrap');
     if (!wraps.length) return;
 
-    const s = document.createElement('style');
-    s.textContent = `
-      @media (max-width: 820px) {
-        .link-preview {
-          display: none !important;
+    if (!document.getElementById('teach-touch-style')) {
+      const s = document.createElement('style');
+      s.id = 'teach-touch-style';
+      s.textContent = `
+        @media (max-width: 820px) {
+          .link-preview { display: none !important; }
+          .teach-title-wrap.open .link-preview {
+            display: block !important;
+            position: static !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            width: 100% !important;
+            pointer-events: auto !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            margin-top: 8px;
+            border: 1px solid rgba(15,23,42,.08);
+            background: #ffffff;
+          }
+          [data-theme="dark"] .teach-title-wrap.open .link-preview {
+            background: #16191f;
+            border-color: rgba(255,255,255,.08);
+          }
+          .teach-link::after { content: ' ↓'; font-size: .75em; opacity: .4; }
+          .teach-title-wrap.open .teach-link::after { content: ' ↑'; }
+          .teach-flat-item { flex-wrap: wrap; }
         }
-        .teach-title-wrap.open .link-preview {
-          display: block !important;
-          position: static !important;
-          opacity: 1 !important;
-          visibility: visible !important;
-          transform: none !important;
-          width: 100% !important;
-          pointer-events: auto !important;
-          box-shadow: none !important;
-          backdrop-filter: none !important;
-          border-radius: 10px;
-          margin-top: 8px;
-          border: 1px solid rgba(15,23,42,.08);
-          background: #ffffff;
-        }
-        [data-theme="dark"] .teach-title-wrap.open .link-preview {
-          background: #16191f;
-          border-color: rgba(255,255,255,.08);
-        }
-        .teach-link::after {
-          content: ' ↓';
-          font-size: .75em;
-          opacity: .4;
-        }
-        .teach-title-wrap.open .teach-link::after { content: ' ↑'; }
-        .teach-flat-item { flex-wrap: wrap; }
-      }
-    `;
-    document.head.appendChild(s);
+      `;
+      document.head.appendChild(s);
+    }
 
     document.querySelectorAll('.teaching-section-head p').forEach(p => {
       if (p.textContent.includes('Hover')) p.textContent = 'Tap title to preview · tap again to open';
     });
 
     wraps.forEach(wrap => {
+      if (wrap.dataset.touchReady) return;
+      wrap.dataset.touchReady = '1';
       const link = wrap.querySelector('.teach-link');
       if (!link) return;
       link.addEventListener('click', function (e) {
@@ -203,39 +329,32 @@
           document.querySelectorAll('.teach-title-wrap.open').forEach(w => w.classList.remove('open'));
           wrap.classList.add('open');
         }
-        /* second tap → link navigates normally */
       });
     });
   }
 
   /* ══════════════════════════════════════════
-     4. MOBILE TOUCH — INDEX PAGE HIGHLIGHTS
+     5. MOBILE TOUCH — INDEX HIGHLIGHTS
   ══════════════════════════════════════════ */
   function initIndexTouch () {
-    const cards = document.querySelectorAll('.highlight-card');
-    if (!cards.length) return;
-
-    const s = document.createElement('style');
-    s.textContent = `
-      @media (max-width: 820px) {
-        .highlight-card {
-          -webkit-tap-highlight-color: transparent;
+    if (!document.getElementById('index-touch-style')) {
+      const s = document.createElement('style');
+      s.id = 'index-touch-style';
+      s.textContent = `
+        @media (max-width: 820px) {
+          .highlight-card { -webkit-tap-highlight-color: transparent; }
+          .highlight-card:active { transform: scale(0.985); border-color: rgba(37,99,235,.25); }
+          .highlight-card.no-link:active { transform: none; }
         }
-        .highlight-card:active {
-          transform: scale(0.985);
-          border-color: rgba(37,99,235,.25);
-        }
-        .highlight-card.no-link:active {
-          transform: none;
-        }
-      }
-    `;
-    document.head.appendChild(s);
+      `;
+      document.head.appendChild(s);
+    }
   }
 
   /* ══ Boot ══ */
   function init () {
     injectToggle();
+    interceptNavClicks();
     initResearchTouch();
     initTeachingTouch();
     initIndexTouch();
