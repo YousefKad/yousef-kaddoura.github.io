@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap');
 
 /* ═══════════════════════════════════════════════
-   TOKENS — light (default)
+   TOKENS — light
 ═══════════════════════════════════════════════ */
 :root {
   --bg:        #ffffff;
@@ -44,13 +44,13 @@
   --shadow-md: 0 8px 32px rgba(0,0,0,.4);
 }
 
-/* Fix: dark mode sidebar inline-styled quote block */
-[data-theme="dark"] .sidebar > div[style] {
-  background: var(--accent-lt) !important;
-  border-left-color: var(--accent) !important;
+/* Dark mode: fix hardcoded inline-style quote block in sidebar */
+html[data-theme="dark"] .sidebar > div[style] {
+  background: #1a2140 !important;
+  border-left-color: #6b8ef5 !important;
 }
-[data-theme="dark"] .sidebar > div[style] span {
-  color: var(--sub) !important;
+html[data-theme="dark"] .sidebar > div[style] span {
+  color: #8d97b4 !important;
 }
 
 /* ═══════════════════════════════════════════════
@@ -369,10 +369,7 @@ img { display: block; max-width: 100%; }
   border-left: 3px solid var(--accent);
   transition: box-shadow .2s, border-color .2s, transform .2s;
 }
-.pub:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
+.pub:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 
 .pub-title {
   font-family: var(--serif);
@@ -405,7 +402,7 @@ img { display: block; max-width: 100%; }
 [data-theme="dark"] .badge-wip { background: #0d2414; color: #6dba7a; }
 
 /* ═══════════════════════════════════════════════
-   TEACHING (shared utility styles)
+   TEACHING (shared utility)
 ═══════════════════════════════════════════════ */
 .inst-block { margin-bottom: 2rem; }
 
@@ -440,45 +437,6 @@ img { display: block; max-width: 100%; }
 }
 .cbadge-now  { background: #e8f5e9; color: #2e7d32; }
 .cbadge-past { background: var(--bg3); color: var(--muted); }
-
-/* ═══════════════════════════════════════════════
-   TEACHING PAGE — hover whole row (same as research)
-   .teach-flat-item is the positioning parent so the
-   preview is triggered and anchored to the full row
-═══════════════════════════════════════════════ */
-.teach-title-wrap { position: static; }
-.teach-flat-item  { position: relative; }
-
-/* Anchor preview to the whole row */
-.teach-flat-item .link-preview {
-  left: 0;
-  top: calc(100% + 6px);
-}
-
-/* Invisible bridge: keeps preview open as mouse travels down */
-.teach-flat-item .link-preview::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  height: 10px;
-}
-
-/* Trigger on whole-row hover */
-.teach-flat-item:hover .link-preview {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Disable old title-only trigger */
-.teach-title-wrap:hover .link-preview,
-.teach-title-wrap:focus-within .link-preview {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-}
 
 /* ═══════════════════════════════════════════════
    CODE PAGE
@@ -562,7 +520,6 @@ footer {
   body { font-size: 15.5px; line-height: 1.75; padding-bottom: 0; }
   .layout { display: block; min-height: auto; }
 
-  /* Sidebar */
   .sidebar {
     width: auto; min-width: 0; height: auto;
     position: static; overflow: visible;
@@ -580,14 +537,15 @@ footer {
     box-shadow: 0 0 0 4px var(--accent-lt);
   }
   .sidebar-photo:hover { box-shadow: 0 0 0 4px var(--accent-lt); }
-  .sidebar-name { font-size: 1.15rem; font-weight: 600; text-align: center; margin-bottom: .18rem; }
-  .sidebar-role { font-size: .8rem; text-align: center; margin-bottom: .12rem; }
+  .sidebar-name  { font-size: 1.15rem; font-weight: 600; text-align: center; margin-bottom: .18rem; }
+  .sidebar-role  { font-size: .8rem; text-align: center; margin-bottom: .12rem; }
   .sidebar-affil { font-size: .76rem; text-align: center; line-height: 1.55; margin-bottom: .2rem; }
   .sidebar-quote { display: block; margin: .9rem 0 .8rem; padding: .55rem .8rem; width: 100%; }
   .sidebar-quote span { font-size: .76rem; }
   .sidebar-divider { display: none; }
-  .octocat-wrap { display: none; }
-  footer { display: none; }
+  .octocat-wrap  { display: none; }
+  footer         { display: none; }
+
   .sidebar-links {
     width: 100%; margin-top: .5rem;
     display: flex; flex-wrap: wrap; justify-content: center; gap: .38rem;
@@ -600,20 +558,14 @@ footer {
   }
   .sidebar-link:active { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
 
-  /* Main */
   .main { padding: 1.4rem 1rem 3rem; background: var(--bg); max-width: 100%; }
   .content-inner { max-width: 100%; }
 
-  /* Nav: single scrollable row, nothing hidden */
   .top-nav {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: .38rem;
-    margin-bottom: 1.6rem;
-    padding-bottom: .4rem;
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; gap: .38rem;
+    margin-bottom: 1.6rem; padding-bottom: .4rem;
   }
   .top-nav::-webkit-scrollbar { display: none; }
   .top-nav a {
@@ -624,36 +576,32 @@ footer {
   .top-nav a.btn-cv:active { background: var(--accent-dk); opacity: 1; }
   #dm-toggle { margin-left: 0; width: 31px; height: 31px; flex-shrink: 0; }
 
-  /* Page head */
   .page-head { margin-bottom: .75rem; }
   .page-head h1 { font-size: 1.75rem; line-height: 1.2; }
   .rule { width: 2.2rem; margin: .85rem 0 1.3rem; }
   .section { margin-bottom: 2rem; }
   .section-title { font-size: 1rem; margin-bottom: .85rem; padding-bottom: .42rem; }
 
-  /* Prose */
   .prose p { font-size: .95rem; line-height: 1.8; margin-bottom: .85rem; }
   .tags { gap: .38rem; margin-top: .9rem; }
-  .tag { font-size: .71rem; padding: .22rem .65rem; }
+  .tag  { font-size: .71rem; padding: .22rem .65rem; }
 
-  /* Publications */
   .pub-list { gap: .65rem; }
   .pub {
     padding: 1rem 1.1rem; border-radius: 14px; border-left-width: 3px;
     box-shadow: none; transform: none; background: var(--bg);
     cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .15s;
   }
-  .pub:hover { box-shadow: none; transform: none; }
+  .pub:hover  { box-shadow: none; transform: none; }
   .pub:active { background: var(--accent-lt); }
-  .pub.open { background: var(--accent-lt); border-color: var(--accent); }
-  .pub-title { font-size: .97rem; line-height: 1.45; margin-bottom: .22rem; }
-  .pub-meta { font-size: .79rem; line-height: 1.6; }
-  .badge { font-size: .59rem; padding: .13rem .42rem; margin-left: .32rem; }
+  .pub.open   { background: var(--accent-lt); border-color: var(--accent); }
+  .pub-title  { font-size: .97rem; line-height: 1.45; margin-bottom: .22rem; }
+  .pub-meta   { font-size: .79rem; line-height: 1.6; }
+  .badge      { font-size: .59rem; padding: .13rem .42rem; margin-left: .32rem; }
 
-  /* Teaching rows */
-  .inst-block { margin-bottom: 1.3rem; }
-  .inst-name { font-size: .97rem; margin-bottom: .55rem; }
-  .course-row {
+  .inst-block  { margin-bottom: 1.3rem; }
+  .inst-name   { font-size: .97rem; margin-bottom: .55rem; }
+  .course-row  {
     display: flex; justify-content: space-between; align-items: center;
     padding: .72rem .75rem; border-radius: 10px; border-bottom: none;
     margin-bottom: .35rem; background: var(--bg2); border: 1px solid var(--border);
@@ -662,34 +610,28 @@ footer {
   .course-row:active { background: var(--accent-lt); border-color: rgba(59,91,219,.3); }
   .course-row:last-child { border-bottom: 1px solid var(--border); }
   .course-year { font-size: .76rem; white-space: nowrap; flex-shrink: 0; }
-  .cbadge { font-size: .58rem; padding: .11rem .38rem; margin-left: .25rem; }
+  .cbadge      { font-size: .58rem; padding: .11rem .38rem; margin-left: .25rem; }
 
-  /* Code / tools */
   .gh-banner { display: block; padding: 1.1rem; margin-bottom: 1.2rem; border-radius: 14px; }
   .gh-banner svg { margin-bottom: .6rem; }
-  .gh-banner p { font-size: .9rem; margin-bottom: .8rem; }
-  .gh-btn { font-size: .78rem; padding: .48rem .95rem; }
-  .tools-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .gh-banner p   { font-size: .9rem; margin-bottom: .8rem; }
+  .gh-btn        { font-size: .78rem; padding: .48rem .95rem; }
+  .tools-grid    { grid-template-columns: 1fr 1fr; gap: .6rem; }
   .tool {
     padding: .95rem 1rem; border-radius: 14px; box-shadow: none;
     -webkit-tap-highlight-color: transparent; transition: background .12s, border-color .12s;
   }
-  .tool:hover { box-shadow: none; transform: none; border-color: var(--border); }
+  .tool:hover  { box-shadow: none; transform: none; border-color: var(--border); }
   .tool:active { background: var(--accent-lt); border-color: var(--accent); }
   .tool-icon { font-size: 1.3rem; margin-bottom: .3rem; }
   .tool-name { font-size: .9rem; }
   .tool-desc { font-size: .75rem; }
 
-  /* Disable enter animations on mobile */
   .fi,
   .fi:nth-child(2),
   .fi:nth-child(3),
   .fi:nth-child(4),
   .fi:nth-child(5) { opacity: 1; transform: none; animation: none; }
-
-  /* Disable hover previews on mobile — JS handles tap instead */
-  .teach-flat-item:hover .link-preview,
-  .teach-title-wrap:hover .link-preview { opacity: 0; visibility: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
