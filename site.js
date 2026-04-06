@@ -209,10 +209,7 @@
       if (row.dataset.touchReady) return;
       row.dataset.touchReady = '1';
 
-      const hint = document.createElement('span');
-      hint.className = 'res-tap-hint';
-      hint.textContent = 'Tap for details';
-      row.querySelector('.res-left')?.appendChild(hint);
+    
 
       row.addEventListener('click', function (e) {
         if (window.innerWidth > 820) return;
