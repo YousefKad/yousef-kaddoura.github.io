@@ -831,4 +831,29 @@ footer {
 }
 
 
+/* ── Teaching: bridge gap so preview stays open when moving mouse into it ── */
+.teach-title-wrap .link-preview::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+/* ── Teaching: last few items open upward so they don't clash with next section ── */
+.teach-flat-item:nth-last-child(-n+2) .link-preview {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+.teach-flat-item:nth-last-child(-n+2) .link-preview::before {
+  top: auto;
+  bottom: -12px;
+}
+
+/* ── Teaching Assistant section: same fix for last items ── */
+.teach-card:last-of-type .teach-flat-item:nth-last-child(-n+3) .link-preview {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
 
