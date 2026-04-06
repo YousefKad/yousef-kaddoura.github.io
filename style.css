@@ -808,6 +808,27 @@ footer {
   }
 }
 
+/* ── Fix: dark mode sidebar quote has hardcoded inline colours ── */
+[data-theme="dark"] .sidebar > div[style] {
+  background: var(--accent-lt) !important;
+  border-left-color: var(--accent) !important;
+}
+[data-theme="dark"] .sidebar > div[style] span {
+  color: var(--sub) !important;
+}
+
+/* ── Fix: mobile nav — no wrapping, scroll instead ── */
+@media (max-width: 720px) {
+  .top-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: .4rem;
+  }
+  .top-nav::-webkit-scrollbar { display: none; }
+  #dm-toggle { margin-left: 0; }
+}
 
 
 
