@@ -198,7 +198,7 @@
     }
 
     document.querySelectorAll('.research-section-head p').forEach(p => {
-      p.textContent = 'Tap for details & links';
+      p.textContent = 'Hover for details & links';
     });
 
     rows.forEach(row => {
