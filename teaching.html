@@ -167,12 +167,26 @@
     }
 
     /* Trigger: hover the whole row, same as .res-row:hover .res-preview */
+    
     .teach-flat-item:hover .link-preview {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
+/* Last 2 items in each card open upward instead of down */
+.teach-flat-item:nth-last-child(-n+2) .link-preview {
+  top: auto;
+  bottom: calc(100% + 6px);
+  transform: translateY(-6px);
+}
+.teach-flat-item:nth-last-child(-n+2) .link-preview::before {
+  top: auto;
+  bottom: -10px;
+}
+.teach-flat-item:nth-last-child(-n+2):hover .link-preview {
+  transform: translateY(0);
+}
     /* Preview content */
     .link-preview-label {
       margin-bottom: 6px;
