@@ -19,9 +19,9 @@
     btn.setAttribute('title',       'Toggle dark mode');
     btn.innerHTML = currentIcon();
     btn.addEventListener('click', toggleTheme);
-    /* ── Place it right before the CV button ── */
+    /* ── Place it AFTER the CV button ── */
     const cv = nav.querySelector('.btn-cv');
-    if (cv) nav.insertBefore(btn, cv);
+    if (cv) cv.after(btn);
     else    nav.appendChild(btn);
   }
 
@@ -61,20 +61,38 @@
 
   /* ══════════════════════════════════════════
      2. MOBILE TOUCH — RESEARCH PAGE
-     .res-preview is display:none on mobile.
-     Tap a row to expand it inline; tap again to close.
-     Tapping a link inside an open preview works normally.
   ══════════════════════════════════════════ */
   function initResearchTouch () {
     const rows = document.querySelectorAll('.res-row');
     if (!rows.length) return;
 
-    /* Inject the open-state styles once */
     const s = document.createElement('style');
     s.textContent = `
       @media (max-width: 820px) {
+        /* Row becomes a column when open so preview goes BELOW */
+        .res-row {
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          flex-wrap: wrap;
+        }
+        .res-row .res-left  { width: 100%; }
+        .res-row .res-right { flex-shrink: 0; }
+
+        /* Hide preview by default */
         .res-preview {
-          display: none;
+          display: none !important;
+        }
+
+        /* When open: show preview as a full-width block below */
+        .res-row.open {
+          background: #f8faff;
+          border-radius: 10px;
+        }
+        [data-theme="dark"] .res-row.open {
+          background: #1a2140;
+        }
+        .res-row.open .res-preview {
+          display: block !important;
           position: static !important;
           opacity: 1 !important;
           visibility: visible !important;
@@ -84,27 +102,32 @@
           backdrop-filter: none !important;
           border-radius: 10px;
           margin-top: 10px;
-          border: 1px solid rgba(15,23,42,.08);
-          background: #fff;
+          border: 1px solid rgba(15,23,42,.1);
+          background: #ffffff;
+          flex-basis: 100%;
         }
-        [data-theme="dark"] .res-preview { background: #16191f; }
-        .res-row.open .res-preview  { display: block !important; }
-        .res-row.open               { background: #f8faff; border-radius: 10px; }
-        [data-theme="dark"] .res-row.open { background: #1a2140; }
-        .res-row                    { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-        .res-tap-hint               { display: block; font-size:.68rem; color:#94a3b8; margin-top:3px; }
+        [data-theme="dark"] .res-row.open .res-preview {
+          background: #16191f;
+          border-color: rgba(255,255,255,.08);
+        }
+
+        /* Tap hint */
+        .res-tap-hint {
+          display: block;
+          font-size: .68rem;
+          color: #94a3b8;
+          margin-top: 2px;
+        }
         .res-row.open .res-tap-hint { display: none; }
       }
     `;
     document.head.appendChild(s);
 
-    /* Update the section hint text */
     document.querySelectorAll('.research-section-head p').forEach(p => {
       p.textContent = 'Tap for details & links';
     });
 
     rows.forEach(row => {
-      /* Add a small "tap" hint under each title */
       const hint = document.createElement('span');
       hint.className = 'res-tap-hint';
       hint.textContent = 'Tap for details';
@@ -112,13 +135,12 @@
       if (left) left.appendChild(hint);
 
       row.addEventListener('click', function (e) {
-        /* If they tapped a real link inside an open preview, let it navigate */
-        if (e.target.closest('a')) return;
-
+        if (window.innerWidth > 820) return;
+        /* Let clicks on links inside an open preview navigate */
+        if (e.target.closest('a') && row.classList.contains('open')) return;
+        e.preventDefault();
         const isOpen = row.classList.contains('open');
-        /* Close all others */
         document.querySelectorAll('.res-row.open').forEach(r => r.classList.remove('open'));
-        /* Toggle this one */
         if (!isOpen) row.classList.add('open');
       });
     });
@@ -126,9 +148,6 @@
 
   /* ══════════════════════════════════════════
      3. MOBILE TOUCH — TEACHING PAGE
-     .link-preview is display:none on mobile.
-     First tap on a course title shows the preview.
-     Second tap follows the link.
   ══════════════════════════════════════════ */
   function initTeachingTouch () {
     const wraps = document.querySelectorAll('.teach-title-wrap');
@@ -138,54 +157,80 @@
     s.textContent = `
       @media (max-width: 820px) {
         .link-preview {
-          display: none;
+          display: none !important;
+        }
+        .teach-title-wrap.open .link-preview {
+          display: block !important;
           position: static !important;
           opacity: 1 !important;
           visibility: visible !important;
           transform: none !important;
           width: 100% !important;
+          pointer-events: auto !important;
           box-shadow: none !important;
           backdrop-filter: none !important;
-          pointer-events: auto !important;
           border-radius: 10px;
           margin-top: 8px;
           border: 1px solid rgba(15,23,42,.08);
-          background: #fff;
+          background: #ffffff;
         }
-        [data-theme="dark"] .link-preview { background: #16191f; }
-        .teach-title-wrap.open .link-preview { display: block !important; }
+        [data-theme="dark"] .teach-title-wrap.open .link-preview {
+          background: #16191f;
+          border-color: rgba(255,255,255,.08);
+        }
         .teach-link::after {
           content: ' ↓';
           font-size: .75em;
-          opacity: .45;
+          opacity: .4;
         }
         .teach-title-wrap.open .teach-link::after { content: ' ↑'; }
+        .teach-flat-item { flex-wrap: wrap; }
       }
     `;
     document.head.appendChild(s);
 
-    /* Update hint text */
     document.querySelectorAll('.teaching-section-head p').forEach(p => {
-      if (p.textContent.includes('Hover')) p.textContent = 'Tap title for preview · tap again to open';
+      if (p.textContent.includes('Hover')) p.textContent = 'Tap title to preview · tap again to open';
     });
 
     wraps.forEach(wrap => {
       const link = wrap.querySelector('.teach-link');
       if (!link) return;
-
       link.addEventListener('click', function (e) {
-        /* Only intercept on narrow screens */
         if (window.innerWidth > 820) return;
-
         if (!wrap.classList.contains('open')) {
-          /* First tap: show preview, don't navigate */
           e.preventDefault();
           document.querySelectorAll('.teach-title-wrap.open').forEach(w => w.classList.remove('open'));
           wrap.classList.add('open');
         }
-        /* Second tap: preview already open → let the link navigate normally */
+        /* second tap → link navigates normally */
       });
     });
+  }
+
+  /* ══════════════════════════════════════════
+     4. MOBILE TOUCH — INDEX PAGE HIGHLIGHTS
+  ══════════════════════════════════════════ */
+  function initIndexTouch () {
+    const cards = document.querySelectorAll('.highlight-card');
+    if (!cards.length) return;
+
+    const s = document.createElement('style');
+    s.textContent = `
+      @media (max-width: 820px) {
+        .highlight-card {
+          -webkit-tap-highlight-color: transparent;
+        }
+        .highlight-card:active {
+          transform: scale(0.985);
+          border-color: rgba(37,99,235,.25);
+        }
+        .highlight-card.no-link:active {
+          transform: none;
+        }
+      }
+    `;
+    document.head.appendChild(s);
   }
 
   /* ══ Boot ══ */
@@ -193,6 +238,7 @@
     injectToggle();
     initResearchTouch();
     initTeachingTouch();
+    initIndexTouch();
   }
 
   if (document.readyState === 'loading') {
