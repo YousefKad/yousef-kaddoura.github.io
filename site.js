@@ -191,11 +191,7 @@
           [data-theme="dark"] .res-row.open .res-preview {
             background: #16191f; border-color: rgba(255,255,255,.08);
           }
-          .res-tap-hint {
-            display: block; font-size: .68rem;
-            color: #94a3b8; margin-top: 2px;
-          }
-          .res-row.open .res-tap-hint { display: none; }
+          
         }
       `;
       document.head.appendChild(s);
