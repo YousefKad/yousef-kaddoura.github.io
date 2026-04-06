@@ -274,7 +274,6 @@ img { display: block; max-width: 100%; }
 
 /* ── Dark mode toggle ── */
 #dm-toggle {
-  margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -684,7 +683,6 @@ footer {
   }
 
   #dm-toggle {
-    margin-left: auto;
     width: 31px;
     height: 31px;
     flex-shrink: 0;
