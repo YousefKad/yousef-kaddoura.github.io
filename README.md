@@ -13,17 +13,3 @@ Your site will be live at `https://YOUR-USERNAME.github.io`.
 
 If you use or adapt this template, please credit Yousef Kaddoura by retaining a visible acknowledgment in the footer.
 
-## File structure
-```
-├── index.html       ← Home
-├── research.html    ← Publications
-├── teaching.html    ← Courses (fill in course names)
-├── code.html        ← GitHub & code
-├── style.css
-├── site.js
-├── images/
-│   └── me_33.JPG   ← Add your photo here
-└── files/
-    └── Yousef_Resume_updated.pdf  ← Add your CV here
-```
-
