@@ -1,5 +1,3 @@
-# Yousef Kaddoura — Academic Website
-
 ## Setup
 
 1. Create a GitHub repo named `YOUR-USERNAME.github.io` and upload the contents of this folder to the root.
