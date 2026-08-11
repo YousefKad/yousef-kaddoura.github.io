@@ -10,204 +10,188 @@
   <link rel="stylesheet" href="style.css"/>
 
   <style>
-    /* ── Page-specific tokens ── */
-    :root {
-      --text:        #0f172a;
-      --muted:       #64748b;
-      --line:        rgba(15,23,42,.08);
-      --card:        #ffffff;
-      --blue:        #2563eb;
-      --blue-soft:   #eff6ff;
-      --teal:        #0f766e;
-      --teal-soft:   #f0fdfa;
-      --slate:       #6366f1;
-      --slate-soft:  #eef2ff;
-      --shadow:      0 10px 28px rgba(15,23,42,.05);
-      --shadow-hover:0 16px 40px rgba(15,23,42,.09);
-      --radius:      18px;
-    }
+    /* Teaching page redesign — deliberately mirrors the restraint of the Research page */
+    .teaching-redesign {
+      --t-text: #0f172a;
+      --t-muted: #64748b;
+      --t-faint: #94a3b8;
+      --t-line: rgba(15, 23, 42, .09);
+      --t-rail: rgba(15, 23, 42, .10);
+      --t-accent: #0f766e;
+      --t-accent-soft: #f0fdfa;
 
-    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-    body, button, input, textarea, select {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--t-text);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Shell ── */
-    .teaching-shell { display: grid; gap: 22px; }
-
-    /* ── Section heads ── */
-    .teaching-group { display: grid; gap: 12px; }
-    .teaching-section-head {
-      display: flex; align-items: flex-end;
-      justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
-    .teaching-section-head h2 { margin: 0; font-size: 1.08rem; font-weight: 800; color: var(--text); }
-    .teaching-section-head p  { margin: 0; font-size: .92rem; color: var(--muted); }
-
-    /* ── Cards ── */
-    .teach-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .teach-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(37,99,235,.18);
-    }
-    .teach-card-feature { padding: 20px; }
-
-    .teach-card-head {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 12px; margin-bottom: 10px;
-    }
-    .teach-card-title { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1.4; }
-    .teach-card-title a { color: inherit; text-decoration: none; }
-    .teach-card-title a:hover { text-decoration: underline; }
-    .teach-card-sub { margin-top: 4px; font-size: .9rem; color: var(--muted); }
-    .teach-desc { margin-top: 8px; font-size: .94rem; line-height: 1.65; color: #475569; }
-
-    /* ── Flat list ── */
-    .teach-flat-list { display: grid; gap: 0; }
-
-    /*
-     * .teach-flat-item is the positioning parent — exactly like .res-row.
-     * Hovering anywhere on the row shows the preview below it.
-     */
-    .teach-flat-item {
-      position: relative;           /* anchor for .link-preview */
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 11px 10px;
-      margin: 0 -10px;
-      border-top: 1px solid var(--line);
-      border-radius: 10px;
-      transition: background .15s ease;
-      z-index: 1;
-    }
-    .teach-flat-item:first-child { border-top: 0; }
-    .teach-flat-item:hover {
-      background: #f8faff;
-      z-index: 10;                  /* lift above siblings so preview is on top */
+    [data-theme="dark"] .teaching-redesign {
+      --t-text: #dde3f0;
+      --t-muted: #8d97b4;
+      --t-faint: #69738f;
+      --t-line: rgba(255, 255, 255, .08);
+      --t-rail: rgba(255, 255, 255, .10);
+      --t-accent: #7dd3c7;
+      --t-accent-soft: rgba(45, 212, 191, .10);
     }
 
-    .teach-flat-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-
-    .teach-inst {
-      font-size: .74rem; font-weight: 600;
-      color: var(--muted); letter-spacing: .02em;
+    .teaching-redesign .grp {
+      margin: 0 0 44px;
     }
 
-    .teach-badges { display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
-
-    .badge {
-      display: inline-flex; align-items: center;
-      padding: 4px 9px; border-radius: 999px;
-      font-size: .72rem; font-weight: 800;
-      line-height: 1; white-space: nowrap;
-    }
-    .badge.role { background: var(--blue-soft); color: var(--blue); }
-    .badge.year { background: var(--teal-soft); color: var(--teal); }
-
-    /* .teach-title-wrap is NOT a positioning parent — static, just inline text */
-    .teach-title-wrap {
-      display: inline-block;
-      max-width: 100%;
+    .teaching-redesign .grp:last-child {
+      margin-bottom: 0;
     }
 
-    .teach-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .97rem; font-weight: 700; line-height: 1.45;
-      color: var(--text); text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: color .15s ease, border-color .15s ease;
-    }
-    .teach-link:hover, .teach-link:focus-visible {
-      color: var(--blue);
-      border-color: rgba(37,99,235,.25);
-      outline: none;
+    .teaching-redesign .grp > h2 {
+      margin: 0 0 4px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--t-faint);
     }
 
-    /*
-     * Preview — anchored to .teach-flat-item, same pattern as .res-preview.
-     * pointer-events: auto so links inside are clickable.
-     */
-    .link-preview {
+    .teaching-redesign .grp > .sub {
+      margin: 0 0 18px;
+      font-size: .84rem;
+      line-height: 1.5;
+      color: var(--t-muted);
+    }
+
+    /* Year/status gutter + continuous hairline */
+    .teaching-redesign .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .teaching-redesign .item {
+      display: grid;
+      grid-template-columns: 5rem minmax(0, 1fr);
+      gap: 0 22px;
+      padding: 14px 0;
+      position: relative;
+    }
+
+    .teaching-redesign .item + .item {
+      border-top: 1px solid var(--t-line);
+    }
+
+    .teaching-redesign .gutter {
+      position: relative;
+      text-align: right;
+      padding-right: 22px;
+      font-size: .78rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--t-muted);
+      line-height: 1.55;
+      white-space: nowrap;
+    }
+
+    .teaching-redesign .gutter::after {
+      content: "";
       position: absolute;
-      left: 0;
-      top: calc(100% + 6px);
-      width: 280px;
-      padding: 12px 13px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,.99);
-      box-shadow: 0 20px 48px rgba(15,23,42,.14);
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(6px);
-      transition: opacity .17s ease, transform .17s ease, visibility .17s ease;
-      pointer-events: auto;         /* allow clicking links inside */
-      z-index: 40;
+      right: 0;
+      top: -14px;
+      bottom: -14px;
+      width: 1px;
+      background: var(--t-rail);
     }
 
-    /* Invisible bridge — keeps preview alive as mouse moves down from the row */
-    .link-preview::before {
-      content: '';
-      position: absolute;
-      top: -10px; left: 0; right: 0;
-      height: 10px;
+    .teaching-redesign .item:first-child .gutter::after { top: 0; }
+    .teaching-redesign .item:last-child .gutter::after { bottom: 0; }
+
+    .teaching-redesign .current {
+      color: var(--t-accent);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
     }
 
-    /* Trigger: hover the whole row, same as .res-row:hover .res-preview */
-    
-    .teach-flat-item:hover .link-preview {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Last 2 items in each card open upward instead of down */
-.teach-flat-item:nth-last-child(-n+2) .link-preview {
-  top: auto;
-  bottom: calc(100% + 6px);
-  transform: translateY(-6px);
-}
-.teach-flat-item:nth-last-child(-n+2) .link-preview::before {
-  top: auto;
-  bottom: -10px;
-}
-.teach-flat-item:nth-last-child(-n+2):hover .link-preview {
-  transform: translateY(0);
-}
-    /* Preview content */
-    .link-preview-label {
-      margin-bottom: 6px;
-      font-size: .68rem; font-weight: 800;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--muted);
+    /* Course/supervision body */
+    .teaching-redesign .t {
+      display: inline;
+      font-size: .97rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--t-text);
+      text-decoration: none;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 0 1px;
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      transition: background-size .22s ease;
     }
-    .link-preview strong { display: block; font-size: .92rem; line-height: 1.35; color: var(--text); }
-    .link-preview span   { display: block; margin-top: 4px; font-size: .8rem; color: var(--muted); }
-    .link-preview p      { margin: 8px 0 0; font-size: .84rem; line-height: 1.5; color: #475569; }
-    .link-preview a      { color: var(--blue); font-weight: 600; text-decoration: none; }
-    .link-preview a:hover{ text-decoration: underline; }
 
-    /* Mobile: hide previews — JS handles tap */
-    @media (max-width: 820px) {
-      .teaching-intro, .teach-card, .teach-card-feature {
-        padding: 16px; border-radius: 16px;
+    .teaching-redesign a.t:hover,
+    .teaching-redesign a.t:focus-visible {
+      background-size: 100% 1px;
+    }
+
+    .teaching-redesign .meta {
+      margin: 3px 0 0;
+      font-size: .83rem;
+      line-height: 1.5;
+      color: var(--t-muted);
+    }
+
+    .teaching-redesign .role {
+      color: var(--t-accent);
+      font-weight: 600;
+    }
+
+    .teaching-redesign .dot {
+      margin: 0 .45em;
+      color: var(--t-faint);
+    }
+
+    .teaching-redesign .detail {
+      margin: 4px 0 0;
+      max-width: 590px;
+      font-size: .79rem;
+      line-height: 1.55;
+      color: var(--t-faint);
+    }
+
+    /* The current supervision row gets only a very light accent */
+    .teaching-redesign .supervision-item {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .teaching-redesign .supervision-item .detail {
+      color: var(--t-muted);
+    }
+
+    /* TA section is intentionally even lighter */
+    .teaching-redesign .compact .item {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .teaching-redesign .compact .meta {
+      margin-top: 2px;
+    }
+
+    @media (max-width: 640px) {
+      .teaching-redesign .item {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
-      .teach-card:hover { transform: none; box-shadow: var(--shadow); }
-      .teach-flat-item  { padding: 11px 0; margin: 0; }
-      .link-preview     { display: none; }
+
+      .teaching-redesign .gutter {
+        text-align: left;
+        padding: 0 0 4px;
+      }
+
+      .teaching-redesign .gutter::after {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -263,319 +247,163 @@
   <div class="page-head fi"><h1>Teaching</h1></div>
   <div class="rule fi"></div>
 
-  <div class="section fi teaching-shell">
+  <div class="section fi teaching-redesign">
 
-    <!-- ══ SUPERVISION ══ -->
-    <section class="teaching-group">
-      <div class="teaching-section-head">
-        <h2>Supervision</h2>
-        <p>Current</p>
-      </div>
-      <article class="teach-card teach-card-feature">
-        <div class="teach-card-head">
+    <!-- ══════════ SUPERVISION ══════════ -->
+    <section class="grp">
+      <h2>Supervision</h2>
+      <p class="sub">Current doctoral supervision</p>
+      <ul class="list">
+        <li class="item supervision-item">
+          <div class="gutter"><span class="current">Current</span></div>
           <div>
-            <div class="teach-card-title">
-              <a href="https://www.ehl.lu.se/tilman-bretschneider" target="_blank" rel="noopener">Tilman Bretschneider</a>
-            </div>
-            <div class="teach-card-sub">PhD student · Lund University</div>
+            <a class="t" href="https://www.ehl.lu.se/tilman-bretschneider" target="_blank" rel="noopener">Tilman Bretschneider</a>
+            <p class="meta">PhD student<span class="dot">·</span>Lund University<span class="dot">·</span><span class="role">Co-supervisor</span></p>
+            <p class="detail">Research interests include treatment effects and imputation.</p>
           </div>
-          <span class="badge role">Co-supervisor</span>
-        </div>
-        <div class="teach-desc">
-          I am co-supervising Tilman. He is particularly interested in treatment effects and imputation. 
-        </div>
-      </article>
+        </li>
+      </ul>
     </section>
 
-    <!-- ══ LECTURER / CO-LECTURER ══ -->
-    <section class="teaching-group">
-      <div class="teaching-section-head">
-        <h2>Lecturer / Co-lecturer</h2>
-        <p>Hover for a quick preview</p>
-      </div>
-      <article class="teach-card">
-        <div class="teach-flat-list">
+    <!-- ══════════ LECTURER / CO-LECTURER ══════════ -->
+    <section class="grp">
+      <h2>Lecturer / Co-lecturer</h2>
+      <p class="sub">Selected teaching across statistics, economics, finance and data analytics</p>
+      <ul class="list">
 
-
-
-
-
-           <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-inference-theory-second-cycle-st438a" target="_blank" rel="noopener">
-                  Inference Theory
-                </a>
-              </div>
-              <span class="teach-inst">Örebro University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2025</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Inference Theory</strong>
-              <span>Master's course in Statistics · Örebro University</span>
-              <p>Lecturer teaching the fundamentals of Inference Theory.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-inference-theory-second-cycle-st438a" target="_blank" rel="noopener">Inference Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Örebro University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of inference theory.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-probability-theory-second-cycle-st437a" target="_blank" rel="noopener">
-                  Probability Theory
-                </a>
-              </div>
-              <span class="teach-inst">Örebro University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2025</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Probability Theory</strong>
-              <span>Master's course in Statistics · Örebro University</span>
-              <p>Lecturer teaching the fundamentals of probability theory.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-probability-theory-second-cycle-st437a" target="_blank" rel="noopener">Probability Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Örebro University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of probability theory.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D185882&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">
-                  Public Economics
-                </a>
-              </div>
-              <span class="teach-inst">University of Liverpool</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Co-lecturer</span>
-              <span class="badge year">2025</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Public Economics</strong>
-              <span>Master's course in Economics · University of Liverpool</span>
-              <p>Co-lecturer. Causal inference with applications in Stata.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D185882&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">Public Economics</a>
+            <p class="meta"><span class="role">Co-lecturer</span><span class="dot">·</span>University of Liverpool</p>
+            <p class="detail">Master's course in Economics · Causal inference with applications in Stata.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D198390&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">
-                  Derivative Securities
-                </a>
-              </div>
-              <span class="teach-inst">University of Liverpool</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2024–2025</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Derivative Securities</strong>
-              <span>Bachelor in Finance / Economics · University of Liverpool</span>
-              <p>Lecturer covering the foundations of derivative securities.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2024–2025</div>
+          <div>
+            <a class="t" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D198390&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">Derivative Securities</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>University of Liverpool</p>
+            <p class="detail">Bachelor in Finance / Economics · Foundations of derivative securities.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/STAN47" target="_blank" rel="noopener">
-                  Deep Learning and AI Methods
-                </a>
-              </div>
-              <span class="teach-inst">Lund University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Co-lecturer</span>
-              <span class="badge year">2025</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Deep Learning and Artificial Intelligence Methods</strong>
-              <span>Master's course in Statistics · Lund University</span>
-              <p>Co-lecturer teaching the fundamentals of deep learning and neural networks.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN47" target="_blank" rel="noopener">Deep Learning and AI Methods</a>
+            <p class="meta"><span class="role">Co-lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of deep learning and neural networks.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">
-                  Econometric Theory
-                </a>
-              </div>
-              <span class="teach-inst">Lund University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2022–2023</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Econometric Theory</strong>
-              <span>PhD course in Economics · Lund University</span>
-              <p>Developed lectures on ML in economics — regularization and double machine learning with Python.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2022–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">Econometric Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">PhD course in Economics · Machine learning in economics, regularization and double machine learning with Python.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/DABN20" target="_blank" rel="noopener">
-                  Working with Databases
-                </a>
-              </div>
-              <span class="teach-inst">Lund University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2021–2023</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Working with Databases</strong>
-              <span>Master's course in Data Analytics · Lund University</span>
-              <p>SQL integration with RStudio, data cleaning, and forecasting techniques.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/DABN20" target="_blank" rel="noopener">Working with Databases</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Master's course in Data Analytics · SQL integration with RStudio, data cleaning and forecasting techniques.</p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-flat-left">
-              <div class="teach-title-wrap">
-                <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">
-                  Introduction to Econometrics
-                </a>
-              </div>
-              <span class="teach-inst">Lund University</span>
-            </div>
-            <div class="teach-badges">
-              <span class="badge role">Lecturer</span>
-              <span class="badge year">2021–2023</span>
-            </div>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Introduction to Econometrics</strong>
-              <span>Bachelor in Economics · Lund University</span>
-              <p>Probability theory, regression analysis, time-series, and panel data.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">Introduction to Econometrics</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Bachelor in Economics · Probability theory, regression analysis, time series and panel data.</p>
           </div>
+        </li>
 
-        </div>
-      </article>
+      </ul>
     </section>
 
-    <!-- ══ TEACHING ASSISTANT ══ -->
-    <section class="teaching-group">
-      <div class="teaching-section-head">
-        <h2>Teaching Assistant</h2>
-        <p>Lund University</p>
-      </div>
-      <article class="teach-card">
-        <div class="teach-flat-list">
+    <!-- ══════════ TEACHING ASSISTANT ══════════ -->
+    <section class="grp compact">
+      <h2>Teaching Assistant</h2>
+      <p class="sub">Lund University</p>
+      <ul class="list">
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN31" target="_blank" rel="noopener">
-                Advanced Econometrics
-              </a>
-            </div>
-            <span class="badge year">2020–2023</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Advanced Econometrics</strong>
-              <span>Master's level · Lund University</span>
-              <p>Teaching Assistant, 2020–2023.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2020–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN31" target="_blank" rel="noopener">Advanced Econometrics</a>
+            <p class="meta">Master's level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">
-                Econometric Theory
-              </a>
-            </div>
-            <span class="badge year">2020–2023</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Econometric Theory</strong>
-              <span>PhD level · Lund University</span>
-              <p>Teaching Assistant, 2020–2023.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2020–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">Econometric Theory</a>
+            <p class="meta">PhD level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN81" target="_blank" rel="noopener">
-                Foundations of Finance
-              </a>
-            </div>
-            <span class="badge year">2021–2023</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Foundations of Finance</strong>
-              <span>Master's level · Lund University</span>
-              <p>Teaching Assistant, 2021–2023.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN81" target="_blank" rel="noopener">Foundations of Finance</a>
+            <p class="meta">Master's level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/STAN51" target="_blank" rel="noopener">
-                Machine Learning from a Regression Perspective
-              </a>
-            </div>
-            <span class="badge year">2021–2023</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Machine Learning from a Regression Perspective</strong>
-              <span>Master's level · Lund University</span>
-              <p>Teaching Assistant, 2021–2023.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN51" target="_blank" rel="noopener">Machine Learning from a Regression Perspective</a>
+            <p class="meta">Master's level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/STAN52" target="_blank" rel="noopener">
-                Advanced Machine Learning
-              </a>
-            </div>
-            <span class="badge year">2023</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Advanced Machine Learning</strong>
-              <span>Master's level · Lund University</span>
-              <p>Teaching Assistant, 2023.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN52" target="_blank" rel="noopener">Advanced Machine Learning</a>
+            <p class="meta">Master's level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-          <div class="teach-flat-item">
-            <div class="teach-title-wrap">
-              <a class="teach-link" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">
-                Introduction to Econometrics
-              </a>
-            </div>
-            <span class="badge year">2020–2022</span>
-            <div class="link-preview">
-              <div class="link-preview-label">Course preview</div>
-              <strong>Introduction to Econometrics</strong>
-              <span>Bachelor's level · Lund University</span>
-              <p>Teaching Assistant, 2020–2022.</p>
-            </div>
+        <li class="item">
+          <div class="gutter">2020–2022</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">Introduction to Econometrics</a>
+            <p class="meta">Bachelor's level<span class="dot">·</span><span class="role">Teaching Assistant</span></p>
           </div>
+        </li>
 
-        </div>
-      </article>
+      </ul>
     </section>
 
-  </div><!-- end teaching-shell -->
+  </div><!-- end teaching-redesign -->
   </div><!-- end content-inner -->
 </main>
 </div>
