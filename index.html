@@ -1,380 +1,650 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yousef Kaddoura — Economist</title>
-  <meta name="description" content="Yousef Kaddoura, Assistant Professor at Örebro Universitet."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"/>
+/* ═══════════════════════════════════════════════
+   TOKENS — light
+   Every colour on the site resolves to one of these.
+   Page-level CSS must NOT redeclare raw hex values.
+═══════════════════════════════════════════════ */
+:root {
+  --sans:  'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --mono:  ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
 
-  <style>
-    /* About page redesign — same restrained visual language as Research / Teaching */
-    .about-redesign {
-      --a-text: #0f172a;
-      --a-muted: #64748b;
-      --a-faint: #94a3b8;
-      --a-line: rgba(15, 23, 42, .09);
-      --a-rail: rgba(15, 23, 42, .10);
-      --a-accent: #0f766e;
+  --bg:        #ffffff;
+  --bg2:       #f7f8f9;
+  --bg3:       #eef0f3;
+  --text:      #14181f;
+  --sub:       #4b5563;
+  --muted:     #868e9b;
+  --faint:     #a3aab6;
+  --border:    #e6e8ec;
+  --border2:   #d6dae1;
+  --rail:      rgba(20, 24, 31, .10);
+  --accent:    #0f766e;
+  --accent-dk: #0b5c56;
+  --accent-lt: #f0fdfa;
+  --sidebar:   #fafaf9;
+  --shadow:    0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06);
 
-      max-width: 720px;
-      margin: 0 auto;
-      color: var(--a-text);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
+  --sidebar-w: 268px;
+  --measure:   760px;   /* the single reading column */
+  --r:         10px;
+}
 
-    [data-theme="dark"] .about-redesign {
-      --a-text: #dde3f0;
-      --a-muted: #8d97b4;
-      --a-faint: #69738f;
-      --a-line: rgba(255, 255, 255, .08);
-      --a-rail: rgba(255, 255, 255, .10);
-      --a-accent: #7dd3c7;
-    }
+/* ═══════════════════════════════════════════════
+   TOKENS — dark
+═══════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:        #12151a;
+  --bg2:       #171a20;
+  --bg3:       #1e222a;
+  --text:      #e2e7ef;
+  --sub:       #a4adbb;
+  --muted:     #7c8593;
+  --faint:     #6a7280;
+  --border:    #262b34;
+  --border2:   #333a45;
+  --rail:      rgba(255, 255, 255, .11);
+  --accent:    #7dd3c7;
+  --accent-dk: #a7e8de;
+  --accent-lt: rgba(125, 211, 199, .10);
+  --sidebar:   #141820;
+  --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
 
-    .about-redesign .grp {
-      margin: 0 0 44px;
-    }
+/* ═══════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .about-redesign .grp:last-child {
-      margin-bottom: 0;
-    }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16.5px;
+  line-height: 1.75;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background .25s ease, color .25s ease;
+}
 
-    .about-redesign .grp > h2 {
-      margin: 0 0 4px;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: var(--a-faint);
-    }
+a { color: var(--accent); text-decoration: none; transition: color .15s, opacity .15s; }
+img { display: block; max-width: 100%; }
 
-    .about-redesign .grp > .sub {
-      margin: 0 0 18px;
-      font-size: .84rem;
-      line-height: 1.5;
-      color: var(--a-muted);
-    }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 
-    /* Intro */
-    .about-redesign .bio-copy {
-      max-width: 680px;
-    }
+/* ═══════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
 
-    .about-redesign .bio-copy p {
-      margin: 0 0 14px;
-      font-size: .96rem;
-      line-height: 1.8;
-      color: var(--a-muted);
-    }
+.main {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  padding: 2.8rem 3.4rem calc(5rem + 28px);
+  transition: background .25s ease;
+}
 
-    .about-redesign .bio-copy p:last-child {
-      margin-bottom: 0;
-    }
+/* One column. Heading, rule and list share a left edge. */
+.content-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
 
-    .about-redesign .bio-copy a,
-    .about-redesign .meta a,
-    .about-redesign .genealogy a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--a-line);
-    }
+/* ═══════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 2.6rem 1.6rem calc(2rem + 28px);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: background .25s ease, border-color .25s ease;
+}
 
-    .about-redesign .bio-copy a:hover,
-    .about-redesign .bio-copy a:focus-visible,
-    .about-redesign .meta a:hover,
-    .about-redesign .meta a:focus-visible {
-      color: var(--a-accent);
-      border-color: currentColor;
-    }
+.sidebar-photo,
+.sidebar-photo-ph {
+  width: 138px;
+  height: 138px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: 0 auto 1.15rem;
+}
 
-    /* Research interests — deliberately not pills */
-    .about-redesign .interests {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 4px 0;
-      font-size: .88rem;
-      line-height: 1.6;
-      color: var(--a-muted);
-    }
+.sidebar-photo {
+  object-fit: cover;
+  object-position: top center;
+  outline: 1px solid var(--border2);
+  outline-offset: 5px;
+  transition: outline-color .2s ease;
+}
+.sidebar-photo:hover { outline-color: var(--accent); }
 
-    .about-redesign .interests span + span::before {
-      content: "·";
-      margin: 0 .65em;
-      color: var(--a-faint);
-    }
+.sidebar-photo-ph {
+  background: var(--bg3);
+  border: 1px dashed var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: .74rem;
+  text-align: center;
+  gap: .35rem;
+}
 
-    /* Shared rail */
-    .about-redesign .list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+.sidebar-name {
+  font-family: var(--serif);
+  font-size: 1.16rem;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: .3rem;
+  text-align: center;
+}
+.sidebar-role {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+  text-align: center;
+}
+.sidebar-affil {
+  font-size: .765rem;
+  color: var(--muted);
+  line-height: 1.65;
+  text-align: center;
+}
 
-    .about-redesign .item {
-      display: grid;
-      grid-template-columns: 5.2rem minmax(0, 1fr);
-      gap: 0 22px;
-      padding: 14px 0;
-      position: relative;
-    }
+.sidebar-quote {
+  margin: 1.25rem 0 .5rem;
+  padding: .1rem 0 .1rem .85rem;
+  border-left: 1px solid var(--border2);
+}
+.sidebar-quote span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .78rem;
+  color: var(--sub);
+  line-height: 1.6;
+  display: block;
+}
 
-    .about-redesign .item + .item {
-      border-top: 1px solid var(--a-line);
-    }
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  margin-top: auto;
+  padding-top: 1.4rem;
+}
 
-    .about-redesign .gutter {
-      position: relative;
-      text-align: right;
-      padding-right: 22px;
-      font-size: .76rem;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      color: var(--a-muted);
-      line-height: 1.55;
-      white-space: nowrap;
-    }
+.sidebar-link,
+.octocat-wrap {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .765rem;
+  color: var(--sub);
+  padding: .38rem .5rem;
+  margin: 0 -.5rem;
+  border-radius: 6px;
+  word-break: break-word;
+  transition: color .15s, background .15s;
+}
+.sidebar-link:hover,
+.octocat-wrap:hover { color: var(--accent); background: var(--accent-lt); }
+.sidebar-link svg,
+.octocat-wrap svg { flex-shrink: 0; opacity: .75; }
+.octocat-wrap a { color: inherit; }
 
-    .about-redesign .gutter::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: -14px;
-      bottom: -14px;
-      width: 1px;
-      background: var(--a-rail);
-    }
+/* ═══════════════════════════════════════════════
+   TOP NAV
+═══════════════════════════════════════════════ */
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.6rem;
+  padding-bottom: .85rem;
+  border-bottom: 1px solid var(--border);
+}
 
-    .about-redesign .item:first-child .gutter::after { top: 0; }
-    .about-redesign .item:last-child .gutter::after { bottom: 0; }
+.top-nav a {
+  font-size: .715rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: .55rem;
+  margin-bottom: -.9rem;
+  border-bottom: 1.5px solid transparent;
+  white-space: nowrap;
+  transition: color .18s, border-color .18s;
+}
+.top-nav a:hover { color: var(--text); }
+.top-nav a.active { color: var(--text); border-bottom-color: var(--accent); }
 
-    .about-redesign .t {
-      display: inline;
-      font-size: .97rem;
-      font-weight: 600;
-      line-height: 1.45;
-      color: var(--a-text);
-      text-decoration: none;
-      background-image: linear-gradient(currentColor, currentColor);
-      background-size: 0 1px;
-      background-repeat: no-repeat;
-      background-position: 0 100%;
-      transition: background-size .22s ease;
-    }
+.top-nav a.btn-cv {
+  margin-left: auto;
+  color: var(--accent);
+}
+.top-nav a.btn-cv:hover { color: var(--accent-dk); }
 
-    .about-redesign a.t:hover,
-    .about-redesign a.t:focus-visible {
-      background-size: 100% 1px;
-    }
+#dm-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color .18s, background .18s, border-color .18s;
+}
+#dm-toggle:hover { color: var(--accent); background: var(--accent-lt); border-color: var(--border); }
+#dm-toggle svg { display: block; }
 
-    .about-redesign .meta {
-      margin: 3px 0 0;
-      font-size: .83rem;
-      line-height: 1.5;
-      color: var(--a-muted);
-    }
+/* ═══════════════════════════════════════════════
+   PAGE HEADING
+═══════════════════════════════════════════════ */
+.page-head { margin-bottom: 1.1rem; }
+.page-head h1 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: -.015em;
+  color: var(--text);
+  line-height: 1.2;
+}
 
-    .about-redesign .dot {
-      margin: 0 .45em;
-      color: var(--a-faint);
-    }
+.rule {
+  height: 1px;
+  background: var(--border);
+  border: none;
+  margin: 0 0 2.4rem;
+}
 
-    .about-redesign .accent {
-      color: var(--a-accent);
-      font-weight: 600;
-    }
+.section { margin-bottom: 3rem; }
+.section:last-child { margin-bottom: 0; }
 
-    .about-redesign .note {
-      color: var(--a-muted);
-    }
+.section-title {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.1rem;
+}
 
-    /* Genealogy */
-    .about-redesign .genealogy {
-      margin: 0;
-      font-size: .82rem;
-      line-height: 1.75;
-      color: var(--a-muted);
-    }
+/* ═══════════════════════════════════════════════
+   PROSE (About page)
+═══════════════════════════════════════════════ */
+.prose p { margin-bottom: 1rem; color: var(--sub); line-height: 1.85; font-size: 1rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose a {
+  color: var(--text);
+  border-bottom: 1px solid var(--border2);
+}
+.prose a:hover { color: var(--accent); border-color: currentColor; }
 
-    @media (max-width: 640px) {
-      .about-redesign .item {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.4rem; }
+.tag {
+  font-size: .73rem;
+  font-weight: 500;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  color: var(--sub);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+}
 
-      .about-redesign .gutter {
-        text-align: left;
-        padding: 0 0 4px;
-      }
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE
+═══════════════════════════════════════════════ */
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 0;
+  font-size: .885rem;
+  line-height: 1.7;
+  color: var(--sub);
+}
+.interests span + span::before {
+  content: "·";
+  margin: 0 .65em;
+  color: var(--faint);
+}
 
-      .about-redesign .gutter::after {
-        display: none;
-      }
+.genealogy {
+  margin: 0;
+  font-size: .82rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
 
-      .about-redesign .interests span + span::before {
-        margin: 0 .45em;
-      }
-    }
-  </style>
-</head>
-<body>
-<div class="layout">
+/* ═══════════════════════════════════════════════
+   ENTRY LISTS — shared by Research and Teaching
+   Gutter carries year or status; hairline rail ties
+   the column together; body carries title + one meta line.
+═══════════════════════════════════════════════ */
+.entries { color: var(--text); }
 
-<aside class="sidebar">
-  <img class="sidebar-photo" src="images/me_33.jpg" alt="Yousef Kaddoura"
-       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-  <div class="sidebar-photo-ph" style="display:none;">
-    <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-      <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-    </svg>
-    <span>Add images/me_33.jpg</span>
-  </div>
-  <div class="sidebar-name">Yousef Kaddoura</div>
-  <div class="sidebar-role">Assistant Professor</div>
-  <div class="sidebar-affil">Örebro Universitet<br/>NIER · Economic Analyst<br/>Affiliated, Lund University</div>
-  <div style="margin:1rem 0 .5rem;padding:.65rem .9rem;border-left:2px solid #d0d6e4;background:#f4f5f7;border-radius:0 6px 6px 0;">
-    <span style="font-family:var(--serif);font-style:italic;font-size:.77rem;color:var(--sub);line-height:1.55;display:block;">By God's grace, all is possible</span>
-  </div>
-  <div class="sidebar-links">
-    <a class="sidebar-link" href="mailto:yousef.kaddoura@oru.se">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      yousef.kaddoura@oru.se
-    </a>
-    <a class="sidebar-link" href="https://scholar.google.com/citations?user=oif7el4AAAAJ&hl=en" target="_blank" rel="noopener">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      Google Scholar
-    </a>
-    <a class="sidebar-link" href="https://www.linkedin.com/in/yousef-kaddoura-04b562aa" target="_blank" rel="noopener">
-      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 2-2v-1z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
-    </a>
-    <div class="octocat-wrap">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      <a href="https://github.com/YousefKad" target="_blank" rel="noopener">YousefKad</a>
-    </div>
-  </div>
-</aside>
+.entries .grp { margin: 0 0 44px; }
+.entries .grp:last-child { margin-bottom: 0; }
 
-<main class="main">
-  <div class="content-inner">
+.entries .grp > h2 {
+  margin: 0 0 4px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
 
-  <nav class="top-nav fi">
-  <a href="index.html" class="active">ABOUT</a>
-  <a href="research.html">RESEARCH</a>
-  <a href="teaching.html">TEACHING</a>
-  <a href="code.html">CODE</a>
-  <a href="files/Yousef_Resume_updated.pdf" target="_blank" class="btn-cv">CV ↓</a>
-  </nav>
+.entries .grp > .sub {
+  margin: 0;
+  font-size: .84rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
 
-  <div class="page-head fi"><h1>Welcome!</h1></div>
-  <div class="rule fi"></div>
+.entries .list,
+.entries .wip {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
 
-  <div class="section fi about-redesign">
+.entries .item {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 0 24px;
+  padding: 15px 0;
+  position: relative;
+}
+.entries .item + .item { border-top: 1px solid var(--border); }
 
-    <!-- ══════════ ABOUT ══════════ -->
-    <section class="grp">
-      <h2>About</h2>
-      <div class="bio-copy">
-        <p>
-          I am an Assistant Professor at
-          <a href="https://www.oru.se/" target="_blank" rel="noopener">Örebro Universitet</a>.
-          I am also an Economist at the Swedish National Institute of Economic Research
-          (<a href="https://www.konj.se/en/" target="_blank" rel="noopener">NIER</a>), where I
-          am implementing machine learning techniques for forecasting, nowcasting, and policy work.
-          Previously, I held an Assistant Professor position at the
-          <a href="https://www.liverpool.ac.uk/management/" target="_blank" rel="noopener">University of Liverpool Management School</a>.
-          I am also an affiliated researcher at
-          <a href="https://www.lusem.lu.se/" target="_blank" rel="noopener">Lund University School of Economics and Management</a>.
-        </p>
-        <p>
-          I earned my Ph.D. in Economics from
-          <a href="https://www.lu.se/" target="_blank" rel="noopener">Lund Universitet</a>
-          in August 2024, along with an M.Sc. in Economics and an M.Sc. in Finance, both from Lund Universitet.
-        </p>
-      </div>
-    </section>
+.entries .gutter {
+  position: relative;
+  text-align: right;
+  padding-right: 24px;
+  font-size: .78rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  line-height: 1.7;
+}
 
-    <!-- ══════════ RESEARCH INTERESTS ══════════ -->
-    <section class="grp">
-      <h2>Research interests</h2>
-      <div class="interests" aria-label="Research interests">
-        <span>Econometrics</span>
-        <span>Machine Learning</span>
-        <span>Matrix Completion</span>
-        <span>Large Factor Models</span>
-        <span>Regularization</span>
-        <span>Clustering &amp; Grouping</span>
-        <span>Structural Breaks</span>
-        <span>Finance</span>
-        <span>Macroeconomics</span>
-      </div>
-    </section>
+.entries .gutter::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -15px;
+  bottom: -15px;
+  width: 1px;
+  background: var(--rail);
+}
+.entries .item:first-child .gutter::after { top: 0; }
+.entries .item:last-child  .gutter::after { bottom: 0; }
 
-    <!-- ══════════ RECENT HIGHLIGHTS ══════════ -->
-    <section class="grp">
-      <h2>Recent highlights</h2>
-      <p class="sub">Selected recent research · <a href="research.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--a-line);">all research →</a></p>
-      <ul class="list">
+.entries .status,
+.entries .current {
+  display: inline-block;
+  font-size: .655rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--accent);
+}
+.entries .status.quiet { color: var(--faint); font-weight: 600; }
 
-        <li class="item">
-          <div class="gutter">R&amp;R</div>
-          <div>
-            <a class="t" href="files/multidim_main_21feb2025.pdf" target="_blank" rel="noopener">Estimating Multi-Dimensional Group Structures in Panel Data Models with an Application to Asset Pricing</a>
-            <p class="meta">with J. Westerlund<span class="dot">·</span>Journal of Financial Econometrics<span class="dot">·</span><span class="accent">R&amp;R</span></p>
-          </div>
-        </li>
+/* Entry body */
+.entries .t {
+  display: inline;
+  font-size: .965rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size .22s ease;
+}
+.entries a.t:hover,
+.entries a.t:focus-visible { background-size: 100% 1px; }
 
-        <li class="item">
-          <div class="gutter">R&amp;R</div>
-          <div>
-            <a class="t" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5274776" target="_blank" rel="noopener">Time Averaged CCE</a>
-            <p class="meta">with Y. Karavias &amp; J. Westerlund<span class="dot">·</span>Oxford Bulletin of Economics and Statistics<span class="dot">·</span><span class="accent">R&amp;R</span></p>
-          </div>
-        </li>
+.entries .meta {
+  margin: 4px 0 0;
+  font-size: .825rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
 
-        <li class="item">
-          <div class="gutter">R&amp;R</div>
-          <div>
-            <span class="t">Generally Shifting Coefficients in Interactive Effects Panel Data Models and the COVID-19 Regime</span>
-            <p class="meta">with J. Westerlund<span class="dot">·</span>Journal of Business and Economic Statistics<span class="dot">·</span><span class="accent">R&amp;R</span></p>
-          </div>
-        </li>
+.entries .venue {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .86rem;
+  color: var(--sub);
+}
 
-        <li class="item">
-          <div class="gutter">2025</div>
-          <div>
-            <a class="t" href="https://doi.org/10.1016/j.jeconom.2025.106005" target="_blank" rel="noopener">Estimating Coefficient-by-Coefficient Breaks in Panel Data Models</a>
-            <p class="meta">Single-authored<span class="dot">·</span>Journal of Econometrics<span class="dot">·</span><span class="note">Job market paper</span></p>
-          </div>
-        </li>
+.entries .dot { margin: 0 .45em; color: var(--faint); }
 
-      </ul>
-    </section>
+.entries .meta-link {
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border2);
+}
+.entries .meta-link:hover { color: var(--accent); border-color: currentColor; }
 
-    <!-- ══════════ ACADEMIC GENEALOGY ══════════ -->
-    <section class="grp">
-      <h2>Academic genealogy</h2>
-      <p class="genealogy">
-        Yousef Kaddoura (2024) · Joakim Westerlund (2005) · David L. Edgerton (1973) · Herman Wold (1938) ·
-        Harald Cramér (1917) · Marcel Riesz (1912) · Lipót Fejér (1902) · Hermann Amandus Schwarz (1864) ·
-        Karl Weierstrass (1854) and Ernst Eduard Kummer (1831) · Heinrich Ferdinand Scherk (1823) ·
-        Friedrich Wilhelm Bessel (1810) · Carl Friedrich Gauss (1799) · Johann Friedrich Pfaff (1786) ·
-        Abraham Gotthelf Kästner (1739) · Christian August Hausen (1713) · Johann Christoph Wichmannshausen (1685) ·
-        Otto Mencke (1665) · Jakob Thomasius (1643) · Friedrich Leibniz (1622)
-      </p>
-    </section>
+.entries .role,
+.entries .state { color: var(--accent); font-weight: 600; }
+.entries .state.quiet { color: var(--muted); font-weight: 500; }
+.entries .note { color: var(--sub); }
 
-  </div><!-- end about-redesign -->
+.entries .detail {
+  margin: 5px 0 0;
+  max-width: 52ch;
+  font-size: .795rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
 
-  </div><!-- end content-inner -->
-</main>
-</div>
-<footer>© 2026 Yousef Kaddoura </footer>
-<script src="site.js"></script>
-</body>
-</html>
+/* Work in progress — deliberately lighter, two columns */
+.entries .wip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 30px;
+}
+.entries .wip li {
+  font-size: .895rem;
+  line-height: 1.5;
+  color: var(--text);
+  padding-left: 14px;
+  border-left: 1px solid var(--rail);
+}
+.entries .wip .who {
+  display: block;
+  margin-top: 3px;
+  font-size: .785rem;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════
+   CODE PAGE
+═══════════════════════════════════════════════ */
+.gh-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.3rem;
+  padding: 1.5rem 1.6rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 2.4rem;
+}
+.gh-banner > svg { flex-shrink: 0; color: var(--text); opacity: .85; }
+.gh-banner p { font-size: .92rem; color: var(--sub); margin: 0 0 .8rem; line-height: 1.7; }
+
+.gh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--text);
+  padding: .42rem .95rem;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  transition: color .18s, border-color .18s, background .18s;
+}
+.gh-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-lt); }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: .8rem; }
+
+.tool {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--bg);
+  transition: border-color .18s, background .18s;
+}
+.tool:hover { border-color: var(--border2); background: var(--bg2); }
+.tool a { color: inherit; display: block; }
+.tool-icon {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--accent);
+  margin-bottom: .55rem;
+}
+.tool-name { font-weight: 600; font-size: .93rem; color: var(--text); margin-bottom: .2rem; }
+.tool-desc { font-size: .775rem; color: var(--muted); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%; height: 24px;
+  background: var(--bg);
+  color: var(--faint);
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════
+   ENTER ANIMATION
+═══════════════════════════════════════════════ */
+.fi { opacity: 0; transform: translateY(8px); animation: fi .45s cubic-bezier(.22,.68,0,1) forwards; }
+.fi:nth-child(2) { animation-delay: .05s; }
+.fi:nth-child(3) { animation-delay: .10s; }
+.fi:nth-child(4) { animation-delay: .15s; }
+.fi:nth-child(5) { animation-delay: .20s; }
+@keyframes fi { to { opacity: 1; transform: none; } }
+
+/* ═══════════════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .main { padding: 2rem 2rem calc(4rem + 28px); }
+}
+
+@media (max-width: 720px) {
+  html, body { overflow-x: hidden; }
+  body { font-size: 15.5px; line-height: 1.7; }
+  .layout { display: block; min-height: auto; }
+
+  .sidebar {
+    width: auto; min-width: 0; height: auto;
+    position: static; overflow: visible;
+    padding: 1.9rem 1.2rem 1.4rem;
+    border: none; border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    align-items: center;
+  }
+  .sidebar-photo, .sidebar-photo-ph { width: 86px; height: 86px; margin: 0 0 .9rem; }
+  .sidebar-quote { display: block; margin: 1rem 0 .2rem; }
+  .octocat-wrap { display: none; }
+  footer { display: none; }
+
+  .sidebar-links {
+    width: 100%; margin-top: .9rem; padding-top: 0;
+    flex-direction: row; flex-wrap: wrap; justify-content: center; gap: .38rem;
+  }
+  .sidebar-link {
+    justify-content: center; margin: 0;
+    padding: .4rem .85rem; font-size: .735rem;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--bg2); word-break: normal; flex-shrink: 0;
+  }
+
+  .main { padding: 1.4rem 1.15rem 3rem; }
+
+  .top-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1.15rem;
+    margin-bottom: 1.7rem;
+  }
+  .top-nav::-webkit-scrollbar { display: none; }
+  .top-nav a { font-size: .68rem; }
+  .top-nav a.btn-cv { margin-left: 0; }
+
+  .page-head { margin-bottom: .8rem; }
+  .page-head h1 { font-size: 1.8rem; }
+  .rule { margin-bottom: 1.5rem; }
+  .section { margin-bottom: 2.2rem; }
+
+  .entries .grp { margin-bottom: 34px; }
+  .entries .item { grid-template-columns: 1fr; gap: 0; padding: 13px 0; }
+  .entries .gutter { text-align: left; padding: 0 0 5px; line-height: 1.4; }
+  .entries .gutter::after { display: none; }
+  .entries .wip { grid-template-columns: 1fr; gap: 14px; }
+
+  .gh-banner { display: block; padding: 1.15rem; margin-bottom: 1.6rem; }
+  .gh-banner > svg { margin-bottom: .7rem; }
+  .tools-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .tool { padding: .9rem 1rem; }
+
+  .fi, .fi:nth-child(2), .fi:nth-child(3), .fi:nth-child(4), .fi:nth-child(5) {
+    opacity: 1; transform: none; animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
