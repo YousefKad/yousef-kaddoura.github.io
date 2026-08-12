@@ -316,6 +316,31 @@ img { display: block; max-width: 100%; }
 }
 
 /* ═══════════════════════════════════════════════
+   ABOUT PAGE
+═══════════════════════════════════════════════ */
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 0;
+  font-size: .885rem;
+  line-height: 1.7;
+  color: var(--sub);
+}
+.interests span + span::before {
+  content: "·";
+  margin: 0 .65em;
+  color: var(--faint);
+}
+
+.genealogy {
+  margin: 0;
+  font-size: .82rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════
    ENTRY LISTS — shared by Research and Teaching
    Gutter carries year or status; hairline rail ties
    the column together; body carries title + one meta line.
