@@ -4,92 +4,233 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Teaching — Yousef Kaddoura</title>
+
+  <script>
+    try {
+      if (localStorage.getItem('yk-theme') === 'dark')
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="layout">
 
-  <style>
-    /* Teaching page redesign — deliberately mirrors the restraint of the Research page */
-    .teaching-redesign {
-      --t-text: #0f172a;
-      --t-muted: #64748b;
-      --t-faint: #94a3b8;
-      --t-line: rgba(15, 23, 42, .09);
-      --t-rail: rgba(15, 23, 42, .10);
-      --t-accent: #0f766e;
-      --t-accent-soft: #f0fdfa;
+<aside class="sidebar">
+  <img class="sidebar-photo" src="images/me_33.jpg" alt="Yousef Kaddoura"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+  <div class="sidebar-photo-ph" style="display:none;">
+    <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+    <span>Add images/me_33.jpg</span>
+  </div>
+  <div class="sidebar-name">Yousef Kaddoura</div>
+  <div class="sidebar-role">Assistant Professor</div>
+  <div class="sidebar-affil">Örebro Universitet<br/>NIER · Economic Analyst<br/>Affiliated, Lund University</div>
+  <div class="sidebar-quote"><span>By God's grace, all is possible</span></div>
+  <div class="sidebar-links">
+    <a class="sidebar-link" href="mailto:yousef.kaddoura@oru.se">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      yousef.kaddoura@oru.se
+    </a>
+    <a class="sidebar-link" href="https://scholar.google.com/citations?user=oif7el4AAAAJ&hl=en" target="_blank" rel="noopener">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Google Scholar
+    </a>
+    <a class="sidebar-link" href="https://www.linkedin.com/in/yousef-kaddoura-04b562aa" target="_blank" rel="noopener">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 2-2v-1z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <div class="octocat-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <a href="https://github.com/YousefKad" target="_blank" rel="noopener">YousefKad</a>
+    </div>
+  </div>
+</aside>
 
-      max-width: 720px;
-      margin: 0 auto;
-      color: var(--t-text);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
+<main class="main">
+  <div class="content-inner">
 
-    [data-theme="dark"] .teaching-redesign {
-      --t-text: #dde3f0;
-      --t-muted: #8d97b4;
-      --t-faint: #69738f;
-      --t-line: rgba(255, 255, 255, .08);
-      --t-rail: rgba(255, 255, 255, .10);
-      --t-accent: #7dd3c7;
-      --t-accent-soft: rgba(45, 212, 191, .10);
-    }
+  <nav class="top-nav fi">
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html" class="active">Teaching</a>
+    <a href="code.html">Code</a>
+    <a href="files/Yousef_Resume_updated.pdf" target="_blank" class="btn-cv">CV ↓</a>
+  </nav>
 
-    .teaching-redesign .grp {
-      margin: 0 0 44px;
-    }
+  <div class="page-head fi"><h1>Teaching</h1></div>
+  <div class="rule fi"></div>
 
-    .teaching-redesign .grp:last-child {
-      margin-bottom: 0;
-    }
+  <div class="section fi entries">
 
-    .teaching-redesign .grp > h2 {
-      margin: 0 0 4px;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: var(--t-faint);
-    }
+    <!-- ══════════ SUPERVISION ══════════ -->
+    <section class="grp">
+      <h2>Supervision</h2>
+      <p class="sub">Current doctoral supervision</p>
+      <ul class="list">
+        <li class="item">
+          <div class="gutter"><span class="current">Current</span></div>
+          <div>
+            <a class="t" href="https://www.ehl.lu.se/tilman-bretschneider" target="_blank" rel="noopener">Tilman Bretschneider</a>
+            <p class="meta">PhD student<span class="dot">·</span>Lund University<span class="dot">·</span><span class="role">Co-supervisor</span></p>
+            <p class="detail">Research interests include treatment effects and imputation.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-    .teaching-redesign .grp > .sub {
-      margin: 0 0 18px;
-      font-size: .84rem;
-      line-height: 1.5;
-      color: var(--t-muted);
-    }
+    <!-- ══════════ LECTURER / CO-LECTURER ══════════ -->
+    <section class="grp">
+      <h2>Lecturer / Co-lecturer</h2>
+      <p class="sub">Selected teaching across statistics, economics, finance and data analytics</p>
+      <ul class="list">
 
-    /* Year/status gutter + continuous hairline */
-    .teaching-redesign .list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-inference-theory-second-cycle-st438a" target="_blank" rel="noopener">Inference Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Örebro University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of inference theory.</p>
+          </div>
+        </li>
 
-    .teaching-redesign .item {
-      display: grid;
-      grid-template-columns: 5rem minmax(0, 1fr);
-      gap: 0 22px;
-      padding: 14px 0;
-      position: relative;
-    }
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.oru.se/english/study/exchange-studies/courses-for-exchange-students/course/statistics-probability-theory-second-cycle-st437a" target="_blank" rel="noopener">Probability Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Örebro University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of probability theory.</p>
+          </div>
+        </li>
 
-    .teaching-redesign .item + .item {
-      border-top: 1px solid var(--t-line);
-    }
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D185882&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">Public Economics</a>
+            <p class="meta"><span class="role">Co-lecturer</span><span class="dot">·</span>University of Liverpool</p>
+            <p class="detail">Master's course in Economics · Causal inference with applications in Stata.</p>
+          </div>
+        </li>
 
-    .teaching-redesign .gutter {
-      position: relative;
-      text-align: right;
-      padding-right: 22px;
-      font-size: .78rem;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      color: var(--t-muted);
-      line-height: 1.55;
-      white-space: nowrap;
+        <li class="item">
+          <div class="gutter">2024–2025</div>
+          <div>
+            <a class="t" href="https://www.liverpool.ac.uk/info/portal/pls/portal/tulwwwmerge.mergepage?p_params=%3Fp_module_id%3D198390&p_template=m_bl&p_tulipproc=moddets" target="_blank" rel="noopener">Derivative Securities</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>University of Liverpool</p>
+            <p class="detail">Bachelor in Finance / Economics · Foundations of derivative securities.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2025</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN47" target="_blank" rel="noopener">Deep Learning and AI Methods</a>
+            <p class="meta"><span class="role">Co-lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Master's course in Statistics · Fundamentals of deep learning and neural networks.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2022–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">Econometric Theory</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">PhD course in Economics · Machine learning in economics, regularization and double machine learning with Python.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/DABN20" target="_blank" rel="noopener">Working with Databases</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Master's course in Data Analytics · SQL integration with RStudio, data cleaning and forecasting techniques.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">Introduction to Econometrics</a>
+            <p class="meta"><span class="role">Lecturer</span><span class="dot">·</span>Lund University</p>
+            <p class="detail">Bachelor in Economics · Probability theory, regression analysis, time series and panel data.</p>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ══════════ TEACHING ASSISTANT ══════════ -->
+    <section class="grp">
+      <h2>Teaching Assistant</h2>
+      <p class="sub">Lund University</p>
+      <ul class="list">
+
+        <li class="item">
+          <div class="gutter">2020–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN31" target="_blank" rel="noopener">Advanced Econometrics</a>
+            <p class="meta">Master's level</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2020–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKP35" target="_blank" rel="noopener">Econometric Theory</a>
+            <p class="meta">PhD level</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKN81" target="_blank" rel="noopener">Foundations of Finance</a>
+            <p class="meta">Master's level</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2021–2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN51" target="_blank" rel="noopener">Machine Learning from a Regression Perspective</a>
+            <p class="meta">Master's level</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2023</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/STAN52" target="_blank" rel="noopener">Advanced Machine Learning</a>
+            <p class="meta">Master's level</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="gutter">2020–2022</div>
+          <div>
+            <a class="t" href="https://kursplaner.lu.se/pdf/kurs/en/NEKG31" target="_blank" rel="noopener">Introduction to Econometrics</a>
+            <p class="meta">Bachelor's level</p>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+  </div><!-- end entries -->
+  </div><!-- end content-inner -->
+</main>
+</div>
+<footer>© 2026 Yousef Kaddoura</footer>
+<script src="site.js"></script>
+</body>
+</html>      white-space: nowrap;
     }
 
     .teaching-redesign .gutter::after {
