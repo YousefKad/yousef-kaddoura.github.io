@@ -4,216 +4,19 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Research — Yousef Kaddoura</title>
+
+  <!-- Set the theme before first paint so dark mode never flashes white -->
+  <script>
+    try {
+      if (localStorage.getItem('yk-theme') === 'dark')
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-
-  <style>
-    /* Research page redesign — scoped so the rest of the site keeps style.css unchanged */
-    .research-redesign {
-      --r-text: #0f172a;
-      --r-muted: #64748b;
-      --r-faint: #94a3b8;
-      --r-line: rgba(15, 23, 42, .09);
-      --r-rail: rgba(15, 23, 42, .10);
-      --r-accent: #0f766e;
-      --r-accent-soft: #f0fdfa;
-
-      max-width: 720px;
-      margin: 0 auto;
-      color: var(--r-text);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Section headings */
-    .research-redesign .grp {
-      margin: 0 0 44px;
-    }
-
-    .research-redesign .grp:last-child {
-      margin-bottom: 0;
-    }
-
-    .research-redesign .grp > h2 {
-      margin: 0 0 18px;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: var(--r-faint);
-    }
-
-    .research-redesign .grp > h2 + .sub {
-      margin: -14px 0 18px;
-      font-size: .84rem;
-      color: var(--r-muted);
-    }
-
-    /* Year/status gutter + vertical hairline + content */
-    .research-redesign .list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .research-redesign .item {
-      display: grid;
-      grid-template-columns: 3.6rem minmax(0, 1fr);
-      gap: 0 22px;
-      padding: 14px 0;
-      position: relative;
-    }
-
-    .research-redesign .item + .item {
-      border-top: 1px solid var(--r-line);
-    }
-
-    .research-redesign .gutter {
-      position: relative;
-      text-align: right;
-      padding-right: 22px;
-      font-size: .8rem;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      color: var(--r-muted);
-      line-height: 1.6;
-    }
-
-    .research-redesign .gutter::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: -14px;
-      bottom: -14px;
-      width: 1px;
-      background: var(--r-rail);
-    }
-
-    .research-redesign .item:first-child .gutter::after { top: 0; }
-    .research-redesign .item:last-child .gutter::after { bottom: 0; }
-
-    .research-redesign .status {
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .04em;
-      color: var(--r-accent);
-      white-space: nowrap;
-    }
-
-    .research-redesign .status.quiet {
-      color: var(--r-faint);
-      font-weight: 600;
-    }
-
-    /* Entry body: title + one compact meta line */
-    .research-redesign .t {
-      display: inline;
-      font-size: .97rem;
-      font-weight: 600;
-      line-height: 1.45;
-      color: var(--r-text);
-      text-decoration: none;
-      background-image: linear-gradient(currentColor, currentColor);
-      background-size: 0 1px;
-      background-repeat: no-repeat;
-      background-position: 0 100%;
-      transition: background-size .22s ease;
-    }
-
-    .research-redesign a.t:hover,
-    .research-redesign a.t:focus-visible {
-      background-size: 100% 1px;
-    }
-
-    .research-redesign .meta {
-      margin: 3px 0 0;
-      font-size: .83rem;
-      line-height: 1.5;
-      color: var(--r-muted);
-    }
-
-    .research-redesign .venue {
-      font-style: italic;
-      color: #475569;
-    }
-
-    .research-redesign .dot {
-      margin: 0 .45em;
-      color: var(--r-faint);
-    }
-
-    .research-redesign .meta-link {
-      color: var(--r-muted);
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid var(--r-line);
-    }
-
-    .research-redesign .meta-link:hover,
-    .research-redesign .meta-link:focus-visible {
-      color: var(--r-accent);
-      border-color: currentColor;
-    }
-
-    .research-redesign .state {
-      color: var(--r-accent);
-      font-weight: 600;
-    }
-
-    .research-redesign .state.quiet {
-      color: var(--r-muted);
-    }
-
-    .research-redesign .note {
-      color: var(--r-muted);
-      font-weight: 500;
-    }
-
-    /* Work in progress: intentionally lighter, two columns */
-    .research-redesign .wip {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px 28px;
-    }
-
-    .research-redesign .wip li {
-      font-size: .9rem;
-      line-height: 1.45;
-      color: var(--r-text);
-    }
-
-    .research-redesign .wip .who {
-      display: block;
-      margin-top: 2px;
-      font-size: .79rem;
-      color: var(--r-muted);
-    }
-
-    @media (max-width: 640px) {
-      .research-redesign .item {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .research-redesign .gutter {
-        text-align: left;
-        padding: 0 0 4px;
-      }
-
-      .research-redesign .gutter::after {
-        display: none;
-      }
-
-      .research-redesign .wip {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
 <div class="layout">
@@ -230,9 +33,7 @@
   <div class="sidebar-name">Yousef Kaddoura</div>
   <div class="sidebar-role">Assistant Professor</div>
   <div class="sidebar-affil">Örebro Universitet<br/>NIER · Economic Analyst<br/>Affiliated, Lund University</div>
-  <div style="margin:1rem 0 .5rem;padding:.65rem .9rem;border-left:2px solid #d0d6e4;background:#f4f5f7;border-radius:0 6px 6px 0;">
-    <span style="font-family:var(--serif);font-style:italic;font-size:.77rem;color:var(--sub);line-height:1.55;display:block;">By God's grace, all is possible</span>
-  </div>
+  <div class="sidebar-quote"><span>By God's grace, all is possible</span></div>
   <div class="sidebar-links">
     <a class="sidebar-link" href="mailto:yousef.kaddoura@oru.se">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
@@ -247,7 +48,7 @@
       LinkedIn
     </a>
     <div class="octocat-wrap">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
       <a href="https://github.com/YousefKad" target="_blank" rel="noopener">YousefKad</a>
     </div>
   </div>
@@ -257,17 +58,17 @@
   <div class="content-inner">
 
   <nav class="top-nav fi">
-  <a href="index.html">About</a>
-  <a href="research.html" class="active">Research</a>
-  <a href="teaching.html">Teaching</a>
-  <a href="code.html">Code</a>
-  <a href="files/Yousef_Resume_updated.pdf" target="_blank" class="btn-cv">CV ↓</a>
+    <a href="index.html">About</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="code.html">Code</a>
+    <a href="files/Yousef_Resume_updated.pdf" target="_blank" class="btn-cv">CV ↓</a>
   </nav>
 
   <div class="page-head fi"><h1>Research</h1></div>
   <div class="rule fi"></div>
 
-  <div class="section fi research-redesign">
+  <div class="section fi entries">
 
     <!-- ══════════ PUBLICATIONS ══════════ -->
     <section class="grp">
@@ -286,7 +87,7 @@
           <div class="gutter">2026</div>
           <div>
             <a class="t" href="https://onlinelibrary.wiley.com/doi/10.1111/obes.70032" target="_blank" rel="noopener">On Robustness to Random Breaks in Panel Data</a>
-            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Oxford Bulletin of Economics and Statistics</span> (Early View)</p>
+            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Oxford Bulletin of Economics and Statistics</span><span class="dot">·</span><span class="state quiet">Early View</span></p>
           </div>
         </li>
 
@@ -331,34 +132,34 @@
       <ul class="list">
 
         <li class="item">
-          <div class="gutter" aria-hidden="true"></div>
+          <div class="gutter"><span class="status">R&amp;R</span></div>
           <div>
             <a class="t" href="files/multidim_main_21feb2025.pdf" target="_blank" rel="noopener">Estimating Multi-Dimensional Group Structures in Panel Data Models with an Application to Asset Pricing</a>
-            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Journal of Financial Econometrics</span><span class="dot">·</span><span class="state">R&amp;R</span><span class="dot">·</span><a class="meta-link" href="files/multidim_main_21feb2025.pdf" target="_blank" rel="noopener">Working paper</a></p>
+            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Journal of Financial Econometrics</span><span class="dot">·</span><a class="meta-link" href="files/multidim_main_21feb2025.pdf" target="_blank" rel="noopener">Working paper</a></p>
           </div>
         </li>
 
         <li class="item">
-          <div class="gutter" aria-hidden="true"></div>
+          <div class="gutter"><span class="status">R&amp;R</span></div>
           <div>
             <span class="t">Generally Shifting Coefficients in Interactive Effects Panel Data Models and the COVID-19 Regime</span>
-            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Journal of Business &amp; Economic Statistics</span><span class="dot">·</span><span class="state">R&amp;R</span></p>
+            <p class="meta">with Joakim Westerlund<span class="dot">·</span><span class="venue">Journal of Business &amp; Economic Statistics</span></p>
           </div>
         </li>
 
         <li class="item">
-          <div class="gutter" aria-hidden="true"></div>
+          <div class="gutter"><span class="status quiet">Under review</span></div>
           <div>
             <a class="t" href="https://arxiv.org/abs/2608.07162" target="_blank" rel="noopener">Estimating and Testing Kinks in Panel Data Models</a>
-            <p class="meta">Single-authored<span class="dot">·</span><span class="state quiet">Under review</span><span class="dot">·</span><a class="meta-link" href="https://arxiv.org/abs/2608.07162" target="_blank" rel="noopener">arXiv</a></p>
+            <p class="meta">Single-authored<span class="dot">·</span><a class="meta-link" href="https://arxiv.org/abs/2608.07162" target="_blank" rel="noopener">arXiv</a></p>
           </div>
         </li>
 
         <li class="item">
-          <div class="gutter" aria-hidden="true"></div>
+          <div class="gutter"><span class="status quiet">Under review</span></div>
           <div>
             <a class="t" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6739748" target="_blank" rel="noopener">Factor-Based Imputation of Missing Values Using Cross-sectional Averages</a>
-            <p class="meta">with Tilman Bretschneider<span class="dot">·</span><span class="state quiet">Under review</span><span class="dot">·</span><a class="meta-link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6739748" target="_blank" rel="noopener">SSRN</a><span class="dot">·</span><span class="note">Honourable mention, 31st IPDC 2026</span></p>
+            <p class="meta">with Tilman Bretschneider<span class="dot">·</span><a class="meta-link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6739748" target="_blank" rel="noopener">SSRN</a><span class="dot">·</span><span class="note">Honourable mention, 31st IPDC 2026</span></p>
           </div>
         </li>
 
@@ -390,7 +191,7 @@
       </ul>
     </section>
 
-  </div><!-- end research-redesign -->
+  </div><!-- end entries -->
 
   </div><!-- end content-inner -->
 </main>
